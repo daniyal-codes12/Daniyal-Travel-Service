@@ -1,0 +1,2220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Daniyal Travel Service — Your Journey, Our Responsibility</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     DESIGN SYSTEM — Navy / Gold / White
+     ============================================================ */
+  :root{
+    --navy-900:#0A1A2F; --navy-800:#12263F; --navy-700:#1C3A5E; --navy-600:#254A75;
+    --gold-500:#C9A24B; --gold-400:#D4B36A; --gold-100:#F5EDD8;
+    --white:#FFFFFF; --surface:#F8F9FB; --surface-2:#EEF1F5;
+    --text:#1A2332; --text-muted:#5A6B7F; --border:#E2E7EE;
+    --success:#1F7A5A; --success-bg:#E6F4EE;
+    --warning:#B7791F; --warning-bg:#FDF3E1;
+    --danger:#B23A3A;  --danger-bg:#FCEAEA;
+    --info:#25528A;    --info-bg:#E7EEF8;
+    --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px;
+    --shadow-sm:0 1px 3px rgba(10,26,47,.06);
+    --shadow-card:0 4px 18px rgba(10,26,47,.07);
+    --shadow-hover:0 12px 30px rgba(10,26,47,.14);
+    --font-sans:'Inter',system-ui,-apple-system,sans-serif;
+    --font-display:'Playfair Display',Georgia,serif;
+    --container:1200px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--font-sans); color:var(--text); background:var(--white);
+    line-height:1.6; font-size:15px; -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  input,select,textarea{font-family:inherit;font-size:inherit}
+  h1,h2,h3,h4{font-family:var(--font-display);color:var(--navy-900);line-height:1.25;font-weight:600}
+  h1{font-size:clamp(2rem,4vw,3.4rem);font-weight:700}
+  h2{font-size:clamp(1.5rem,2.6vw,2.25rem)}
+  h3{font-size:1.25rem;font-family:var(--font-sans);font-weight:600}
+  .container{max-width:var(--container);margin:0 auto;padding:0 24px}
+  .muted{color:var(--text-muted)}
+  .gold{color:var(--gold-500)}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+
+  /* ============================================================
+     BUTTONS
+     ============================================================ */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:11px 22px;border-radius:var(--radius-md);font-weight:600;font-size:14px;
+    transition:all .18s ease; white-space:nowrap; letter-spacing:.01em;
+  }
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn-primary{background:var(--navy-800);color:#fff}
+  .btn-primary:hover:not(:disabled){background:var(--navy-900);transform:translateY(-1px);box-shadow:var(--shadow-card)}
+  .btn-gold{background:var(--gold-500);color:var(--navy-900)}
+  .btn-gold:hover:not(:disabled){background:var(--gold-400);transform:translateY(-1px);box-shadow:var(--shadow-card)}
+  .btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--navy-800)}
+  .btn-outline:hover:not(:disabled){border-color:var(--navy-800);background:var(--surface)}
+  .btn-ghost{background:transparent;color:var(--navy-700)}
+  .btn-ghost:hover:not(:disabled){background:var(--surface-2)}
+  .btn-danger{background:var(--danger);color:#fff}
+  .btn-danger:hover:not(:disabled){background:#962f2f}
+  .btn-sm{padding:7px 14px;font-size:13px}
+  .btn-lg{padding:14px 28px;font-size:15px}
+  .btn-block{width:100%}
+
+  /* ============================================================
+     FORM CONTROLS
+     ============================================================ */
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field label{font-size:13px;font-weight:600;color:var(--navy-800)}
+  .field input,.field select,.field textarea{
+    padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius-md);
+    font-size:14px;color:var(--text);background:#fff;transition:border .15s,box-shadow .15s;width:100%;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--gold-500);box-shadow:0 0 0 3px rgba(201,162,75,.18);
+  }
+  .field.error input,.field.error select{border-color:var(--danger)}
+  .field .err{font-size:12px;color:var(--danger);font-weight:500}
+  .field .hint{font-size:12px;color:var(--text-muted)}
+
+  /* ============================================================
+     CARDS / BADGES
+     ============================================================ */
+  .card{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-card);overflow:hidden;transition:all .2s ease}
+  .card.hover:hover{box-shadow:var(--shadow-hover);transform:translateY(-3px)}
+  .card-body{padding:20px}
+  .badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.02em}
+  .badge-success{background:var(--success-bg);color:var(--success)}
+  .badge-warning{background:var(--warning-bg);color:var(--warning)}
+  .badge-danger{background:var(--danger-bg);color:var(--danger)}
+  .badge-info{background:var(--info-bg);color:var(--info)}
+  .badge-gold{background:var(--gold-100);color:#8a6d1f}
+  .badge-muted{background:var(--surface-2);color:var(--text-muted)}
+
+  /* ============================================================
+     HEADER / NAV
+     ============================================================ */
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--navy-900)}
+  .logo-mark{
+    width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--navy-800),var(--navy-700));
+    display:grid;place-items:center;color:var(--gold-500);font-size:18px;font-weight:700;font-family:var(--font-display)
+  }
+  .logo small{display:block;font-family:var(--font-sans);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--navy-800);transition:color .15s;position:relative}
+  .nav-links a:hover{color:var(--gold-500)}
+  .nav-links a.active{color:var(--gold-500)}
+  .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-25px;height:2px;background:var(--gold-500)}
+  .nav-actions{display:flex;align-items:center;gap:10px}
+  .user-chip{display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;background:var(--surface);font-size:13px;font-weight:600;color:var(--navy-800);cursor:pointer;border:1px solid var(--border)}
+  .user-chip .avatar{width:28px;height:28px;border-radius:50%;background:var(--navy-800);color:var(--gold-500);display:grid;place-items:center;font-size:12px;font-weight:700}
+  .hamburger{display:none;width:40px;height:40px;border-radius:8px;align-items:center;justify-content:center}
+  @media(max-width:960px){
+    .nav-links{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;flex-direction:column;align-items:flex-start;padding:16px 24px;gap:4px;border-bottom:1px solid var(--border);box-shadow:var(--shadow-card)}
+    .nav-links.open{display:flex}
+    .nav-links a{width:100%;padding:10px 0}
+    .nav-links a.active::after{display:none}
+    .hamburger{display:flex}
+    .nav-actions .hide-mobile{display:none}
+  }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero{position:relative;min-height:640px;display:flex;align-items:center;padding:60px 0 100px;overflow:hidden;background:var(--navy-900)}
+  .hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2400&q=80');background-size:cover;background-position:center;opacity:.45}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,47,.35) 0%,rgba(10,26,47,.72) 100%)}
+  .hero .container{position:relative;z-index:2}
+  .hero-inner{max-width:760px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(201,162,75,.15);border:1px solid rgba(201,162,75,.4);border-radius:999px;color:var(--gold-400);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+  .hero h1{color:#fff;margin-bottom:18px}
+  .hero p{color:rgba(255,255,255,.85);font-size:17px;max-width:600px;margin-bottom:32px}
+  .search-widget{
+    background:#fff;border-radius:var(--radius-xl);box-shadow:var(--shadow-hover);
+    padding:24px;display:grid;grid-template-columns:1fr 1fr 1fr .8fr auto;gap:14px;align-items:end;
+  }
+  @media(max-width:1000px){.search-widget{grid-template-columns:1fr 1fr;}.search-widget .btn{grid-column:1/-1}}
+  @media(max-width:520px){.search-widget{grid-template-columns:1fr}}
+
+  /* ============================================================
+     SECTIONS
+     ============================================================ */
+  section{padding:72px 0}
+  .section-head{max-width:640px;margin-bottom:40px}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .section-head .eyebrow{background:var(--gold-100);border-color:transparent;color:#8a6d1f;margin-bottom:12px}
+  .section-head p{color:var(--text-muted);margin-top:10px;font-size:15px}
+  .grid{display:grid;gap:24px}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-4{grid-template-columns:repeat(4,1fr)}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:960px){.grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.grid-3,.grid-4,.grid-2{grid-template-columns:1fr}}
+
+  /* Destination / package cards */
+  .img-card .thumb{height:200px;background-size:cover;background-position:center;position:relative}
+  .img-card .thumb .price-tag{position:absolute;top:12px;right:12px;background:#fff;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700;color:var(--navy-900);box-shadow:var(--shadow-sm)}
+  .img-card .card-body h3{margin-bottom:6px;font-family:var(--font-sans);font-size:17px;color:var(--navy-900)}
+  .img-card .card-body p{color:var(--text-muted);font-size:13.5px;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .meta{display:flex;gap:16px;font-size:12.5px;color:var(--text-muted);margin-bottom:14px;flex-wrap:wrap}
+  .meta span{display:inline-flex;align-items:center;gap:5px}
+
+  /* Why choose us */
+  .feature{padding:28px;background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-card);border-top:3px solid var(--gold-500)}
+  .feature .icon{width:48px;height:48px;border-radius:12px;background:var(--navy-800);color:var(--gold-500);display:grid;place-items:center;font-size:22px;margin-bottom:16px}
+  .feature h3{font-size:17px;margin-bottom:6px}
+  .feature p{color:var(--text-muted);font-size:14px}
+
+  /* Testimonials */
+  .testimonial{padding:28px;background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-card)}
+  .testimonial .quote{font-size:14.5px;color:var(--text);line-height:1.7;margin-bottom:18px;font-style:italic}
+  .testimonial .who{display:flex;align-items:center;gap:12px}
+  .testimonial .who .avatar{width:44px;height:44px;border-radius:50%;background:var(--navy-800);color:var(--gold-500);display:grid;place-items:center;font-weight:700}
+  .testimonial .who strong{display:block;font-size:14px}
+  .testimonial .who small{color:var(--text-muted);font-size:12.5px}
+  .sample-note{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--warning-bg);color:var(--warning);border-radius:999px;font-size:11.5px;font-weight:600;margin-bottom:20px}
+
+  /* FAQ */
+  .faq-item{background:#fff;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);margin-bottom:12px;overflow:hidden;border:1px solid var(--border)}
+  .faq-q{width:100%;text-align:left;padding:18px 20px;font-weight:600;font-size:15px;color:var(--navy-900);display:flex;justify-content:space-between;align-items:center}
+  .faq-q .chev{transition:transform .2s}
+  .faq-item.open .chev{transform:rotate(180deg)}
+  .faq-a{padding:0 20px 20px;color:var(--text-muted);font-size:14px;display:none}
+  .faq-item.open .faq-a{display:block}
+
+  /* Footer */
+  .site-footer{background:var(--navy-900);color:rgba(255,255,255,.75);padding:60px 0 28px;margin-top:40px}
+  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+  @media(max-width:820px){.footer-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.footer-grid{grid-template-columns:1fr}}
+  .site-footer h4{color:#fff;font-family:var(--font-sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;font-weight:600}
+  .site-footer a{display:block;font-size:14px;padding:5px 0;transition:color .15s}
+  .site-footer a:hover{color:var(--gold-400)}
+  .site-footer .logo{color:#fff;margin-bottom:14px}
+  .site-footer .logo small{color:rgba(255,255,255,.55)}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.55);flex-wrap:wrap;gap:10px}
+  .socials{display:flex;gap:10px}
+  .socials a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;padding:0}
+  .socials a:hover{background:var(--gold-500);color:var(--navy-900)}
+
+  /* ============================================================
+     PAGE / DASHBOARD LAYOUTS
+     ============================================================ */
+  .page-hero{background:linear-gradient(135deg,var(--navy-900),var(--navy-700));color:#fff;padding:56px 0;margin-bottom:40px}
+  .page-hero h1{color:#fff;margin-bottom:8px}
+  .page-hero p{color:rgba(255,255,255,.75);max-width:640px}
+
+  .dash-layout{display:grid;grid-template-columns:240px 1fr;gap:28px}
+  @media(max-width:900px){.dash-layout{grid-template-columns:1fr}}
+  .dash-sidebar{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-card);padding:18px;height:fit-content;position:sticky;top:90px}
+  .dash-sidebar .who{display:flex;gap:12px;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:12px}
+  .dash-sidebar .who .avatar{width:44px;height:44px;border-radius:50%;background:var(--navy-800);color:var(--gold-500);display:grid;place-items:center;font-weight:700}
+  .dash-sidebar .who strong{display:block;font-size:14px}
+  .dash-sidebar .who small{color:var(--text-muted);font-size:12px;word-break:break-all}
+  .side-link{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:14px;font-weight:500;color:var(--navy-800);width:100%;text-align:left;transition:.15s}
+  .side-link:hover{background:var(--surface)}
+  .side-link.active{background:var(--navy-800);color:#fff}
+  .side-link.danger{color:var(--danger)}
+  .side-link.danger:hover{background:var(--danger-bg)}
+
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+  @media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fff;border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-card)}
+  .kpi .label{font-size:12.5px;color:var(--text-muted);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+  .kpi .value{font-size:26px;font-weight:700;color:var(--navy-900);font-family:var(--font-display)}
+  .kpi .sub{font-size:12.5px;color:var(--text-muted);margin-top:4px}
+
+  .panel{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-card);overflow:hidden;margin-bottom:24px}
+  .panel-head{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  .panel-head h3{font-size:16px;font-family:var(--font-sans);font-weight:600}
+  .panel-body{padding:20px 22px}
+  .panel-body.flush{padding:0}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{text-align:left;padding:12px 16px;background:var(--surface);font-weight:600;color:var(--navy-800);font-size:12px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border)}
+  td{padding:14px 16px;border-bottom:1px solid var(--border);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:var(--surface)}
+  .table-wrap{overflow-x:auto}
+
+  /* ============================================================
+     SEAT MAP
+     ============================================================ */
+  .seat-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--text-muted);margin-bottom:16px}
+  .seat-legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend-dot{width:14px;height:14px;border-radius:4px;display:inline-block}
+  .seat-map{max-width:340px;margin:0 auto;background:var(--surface);border-radius:14px;padding:18px;border:2px solid var(--border)}
+  .seat-row{display:grid;grid-template-columns:1fr 1fr 24px 1fr 1fr;gap:8px;margin-bottom:8px}
+  .seat-row .aisle{grid-column:3}
+  .seat{
+    height:44px;border-radius:8px;display:grid;place-items:center;font-size:12px;font-weight:600;
+    border:1.5px solid var(--border);background:#fff;color:var(--navy-800);transition:all .15s;user-select:none;
+  }
+  .seat:hover:not(:disabled){border-color:var(--gold-500);transform:scale(1.05)}
+  .seat.selected{background:var(--gold-500);border-color:var(--gold-500);color:var(--navy-900)}
+  .seat.booked{background:#E2E7EE;color:#A0AAB8;text-decoration:line-through;cursor:not-allowed;border-color:#E2E7EE}
+  .seat.held{background:var(--warning-bg);color:var(--warning);cursor:wait;border-color:var(--warning)}
+  .driver{text-align:center;font-size:11px;color:var(--text-muted);padding:6px 0 12px;letter-spacing:.08em;text-transform:uppercase}
+
+  /* ============================================================
+     TICKET / QR
+     ============================================================ */
+  .ticket{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-card);overflow:hidden;max-width:640px;margin:0 auto;border-top:6px solid var(--gold-500)}
+  .ticket-head{padding:24px;background:var(--navy-900);color:#fff;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .ticket-head h3{color:#fff;margin:0}
+  .ticket-head .ref{font-family:monospace;font-size:15px;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:6px;letter-spacing:.05em}
+  .ticket-body{padding:24px;display:grid;grid-template-columns:1fr auto;gap:24px}
+  @media(max-width:520px){.ticket-body{grid-template-columns:1fr}}
+  .ticket-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--border);font-size:14px}
+  .ticket-row:last-child{border-bottom:none}
+  .ticket-row span:first-child{color:var(--text-muted)}
+  .ticket-row span:last-child{font-weight:600;color:var(--navy-900);text-align:right}
+  .qr-wrap{padding:12px;background:#fff;border:1px solid var(--border);border-radius:10px;text-align:center}
+  .qr-wrap small{display:block;margin-top:6px;color:var(--text-muted);font-size:11px}
+
+  /* ============================================================
+     MODAL / TOAST / LOADER
+     ============================================================ */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(10,26,47,.55);backdrop-filter:blur(3px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+  .modal-backdrop.show{display:flex}
+  .modal{background:#fff;border-radius:var(--radius-xl);max-width:520px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-hover)}
+  .modal-head{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+  .modal-head h3{font-size:17px;font-family:var(--font-sans);font-weight:600}
+  .modal-body{padding:22px 24px}
+  .modal-foot{padding:16px 24px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px}
+
+  .toast-wrap{position:fixed;top:88px;right:20px;z-index:300;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+  .toast{background:#fff;border-radius:10px;box-shadow:var(--shadow-hover);padding:14px 18px;min-width:260px;max-width:380px;border-left:4px solid var(--info);font-size:14px;pointer-events:auto;animation:slideIn .3s ease}
+  .toast.success{border-left-color:var(--success)}
+  .toast.error{border-left-color:var(--danger)}
+  .toast.warning{border-left-color:var(--warning)}
+  .toast strong{display:block;font-size:13.5px;color:var(--navy-900);margin-bottom:2px}
+  .toast small{color:var(--text-muted);font-size:12.5px}
+  @keyframes slideIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+
+  .spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--gold-500);border-radius:50%;animation:spin .8s linear infinite;margin:40px auto}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .empty-state{text-align:center;padding:56px 20px;color:var(--text-muted)}
+  .empty-state .icon{font-size:44px;margin-bottom:14px;opacity:.4}
+  .empty-state h3{color:var(--navy-800);margin-bottom:8px}
+
+  /* Filters bar */
+  .filters-bar{background:#fff;border-radius:var(--radius-lg);padding:18px 20px;box-shadow:var(--shadow-card);margin-bottom:24px;display:flex;gap:14px;flex-wrap:wrap;align-items:end}
+
+  /* Utilities */
+  .flex{display:flex}.between{justify-content:space-between}.center{align-items:center}.gap-8{gap:8px}.gap-12{gap:12px}.gap-16{gap:16px}.gap-20{gap:20px}
+  .wrap{flex-wrap:wrap}
+  .mt-8{margin-top:8px}.mt-16{margin-top:16px}.mt-24{margin-top:24px}.mb-16{margin-bottom:16px}.mb-24{margin-bottom:24px}
+  .divider{height:1px;background:var(--border);margin:20px 0}
+  .pill-tabs{display:inline-flex;gap:4px;padding:4px;background:var(--surface);border-radius:999px;flex-wrap:wrap}
+  .pill-tabs button{padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;color:var(--text-muted);transition:.15s}
+  .pill-tabs button.active{background:var(--navy-800);color:#fff}
+  .pill-tabs button:hover:not(.active){color:var(--navy-800)}
+
+  /* Print styles for ticket */
+  @media print{
+    .site-header,.site-footer,.no-print{display:none!important}
+    body{background:#fff}
+    .ticket{box-shadow:none;border:1px solid #ccc}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="container nav">
+    <a href="#/" class="logo" onclick="Router.go('/')">
+      <div class="logo-mark">D</div>
+      <div>Daniyal <small>Travel Service</small></div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#/" data-link="/">Home</a>
+      <a href="#/destinations" data-link="/destinations">Destinations</a>
+      <a href="#/packages" data-link="/packages">Packages</a>
+      <a href="#/bus" data-link="/bus">Bus Booking</a>
+      <a href="#/about" data-link="/about">About</a>
+      <a href="#/contact" data-link="/contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <div id="authArea"></div>
+      <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== TOASTS ===================== -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- ===================== APP ROOT ===================== -->
+<main id="app"></main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#/" class="logo" onclick="Router.go('/')">
+          <div class="logo-mark" style="background:linear-gradient(135deg,var(--gold-500),var(--gold-400))">D</div>
+          <div style="color:#fff">Daniyal <small style="color:rgba(255,255,255,.55)">Travel Service</small></div>
+        </a>
+        <p style="font-size:14px;line-height:1.7;margin-top:6px;color:rgba(255,255,255,.65)">Your Journey, Our Responsibility. Premium bus tickets and travel packages across Pakistan — trusted, safe, and modern.</p>
+        <div class="socials" style="margin-top:16px">
+          <a href="#" aria-label="Facebook" onclick="return false;">f</a>
+          <a href="#" aria-label="Instagram" onclick="return false;">◉</a>
+          <a href="#" aria-label="Twitter" onclick="return false;">𝕏</a>
+          <a href="#" aria-label="WhatsApp" onclick="return false;">☎</a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#/destinations" onclick="Router.go('/destinations')">Destinations</a>
+        <a href="#/packages" onclick="Router.go('/packages')">Travel Packages</a>
+        <a href="#/bus" onclick="Router.go('/bus')">Bus Tickets</a>
+        <a href="#/faqs" onclick="Router.go('/faqs')">FAQs</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#/about" onclick="Router.go('/about')">About Us</a>
+        <a href="#/contact" onclick="Router.go('/contact')">Contact</a>
+        <a href="#/terms" onclick="Router.go('/terms')">Terms & Conditions</a>
+        <a href="#/privacy" onclick="Router.go('/privacy')">Privacy Policy</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:+922112345678">📞 +92 21 1234 5678</a>
+        <a href="mailto:info@daniyaltravel.pk">✉ info@daniyaltravel.pk</a>
+        <p style="font-size:14px;color:rgba(255,255,255,.65);padding-top:6px">📍 Suite 401, Business Avenue,<br>Shahrah-e-Faisal, Karachi, Pakistan</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Daniyal Travel Service. All rights reserved. PKR · Pakistan Standard Time.</span>
+      <span>Built as a demonstration project. Sample data — no real bookings processed.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== MODAL ROOT ===================== -->
+<div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this)Modal.close()">
+  <div class="modal" id="modalBox">
+    <div class="modal-head">
+      <h3 id="modalTitle">Confirm</h3>
+      <button class="btn-ghost" onclick="Modal.close()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot" id="modalFoot"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DANIYAL TRAVEL SERVICE — SINGLE-FILE FRONTEND PROTOTYPE
+   Client-side data layer over localStorage.
+   Shapes match the Spring Boot REST contract described in the README.
+   ============================================================ */
+
+const DB_KEY = 'dts_v1';
+
+/* ---------------- DB / STORE ---------------- */
+const Store = {
+  load() {
+    try { return JSON.parse(localStorage.getItem(DB_KEY)) || null; } catch { return null; }
+  },
+  save(db) { localStorage.setItem(DB_KEY, JSON.stringify(db)); },
+  seed() {
+    const db = {
+      users: [
+        { id: 1, email: 'admin@daniyaltravel.pk', password: 'Admin@123', fullName: 'Admin', phone: '0300-0000000', role: 'ADMIN', createdAt: nowISO() },
+        { id: 2, email: 'customer@example.com', password: 'Customer@123', fullName: 'Ahmed Khan', phone: '0300-1234567', role: 'CUSTOMER', createdAt: nowISO() }
+      ],
+      session: null, // { userId, role }
+      destinations: [
+        { id: 1, name: 'Karachi', tagline: 'City of Lights', description: 'Pakistan’s largest city — coastal charm, historic Clifton, and thriving food scene.', image: 'https://images.unsplash.com/photo-1588416936097-41850ab3d86d?auto=format&fit=crop&w=900&q=70', startingPrice: 4500, featured: true },
+        { id: 2, name: 'Lahore', tagline: 'Heart of Pakistan', description: 'Mughal heritage, Badshahi Mosque, and legendary street food.', image: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=900&q=70', startingPrice: 5500, featured: true },
+        { id: 3, name: 'Islamabad', tagline: 'The Green Capital', description: 'Margalla Hills, Faisal Mosque, and serene planned boulevards.', image: 'https://images.unsplash.com/photo-1589904550314-04c5e18b5a30?auto=format&fit=crop&w=900&q=70', startingPrice: 6000, featured: true },
+        { id: 4, name: 'Hyderabad', tagline: 'City of Wind Catchers', description: 'Historic Sindh charm with vibrant bazaars and forts.', image: 'https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=900&q=70', startingPrice: 3500, featured: false },
+        { id: 5, name: 'Sukkur', tagline: 'Gateway to Sindh', description: 'The mighty Indus, Lansdowne Bridge, and warm hospitality.', image: 'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=900&q=70', startingPrice: 3800, featured: false },
+        { id: 6, name: 'Murree', tagline: 'Queen of Hills', description: 'Pine forests, cool breezes, and colonial-era charm.', image: 'https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=900&q=70', startingPrice: 7500, featured: true },
+        { id: 7, name: 'Hunza', tagline: 'Heaven on Earth', description: 'Snow peaks, apricot orchards, and Karakoram views.', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=70', startingPrice: 22000, featured: true },
+        { id: 8, name: 'Skardu', tagline: 'Land of Giants', description: 'Shangrila, cold desert, and the gateway to K2.', image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=70', startingPrice: 25000, featured: false },
+        { id: 9, name: 'Swat', tagline: 'Switzerland of Pakistan', description: 'Rivers, valleys, and the serene Kalam mountains.', image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=70', startingPrice: 12000, featured: true }
+      ],
+      packages: [
+        { id: 1, name: 'Hunza Valley Explorer', category: 'Northern Tours', destination: 'Hunza', description: '7-day guided tour through Hunza, Attabad, Khunjerab Pass, and Eagle’s Nest.', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=70', duration: '7 Days / 6 Nights', pricePerPerson: 85000, capacity: 20, seatsTaken: 4, departureDate: '2026-06-15', bookingDeadline: '2026-06-05', includes: ['Transport', 'Hotels', 'Breakfast & Dinner', 'Guide'], excludes: ['Airfare', 'Personal expenses', 'Jeep charges'], itinerary: ['Day 1: Islamabad → Chilas','Day 2: Chilas → Hunza','Day 3: Hunza sightseeing','Day 4: Khunjerab Pass','Day 5: Attabad Lake','Day 6: Eagle’s Nest','Day 7: Return'] },
+        { id: 2, name: 'Murree Weekend Escape', category: 'Weekend Getaways', destination: 'Murree', description: '2-day refreshing weekend in the hills with Nathiagali detour.', image: 'https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=900&q=70', duration: '2 Days / 1 Night', pricePerPerson: 18500, capacity: 30, seatsTaken: 12, departureDate: '2026-05-02', bookingDeadline: '2026-04-28', includes: ['Transport', 'Hotel', 'Breakfast'], excludes: ['Lunch', 'Dinner'], itinerary: ['Day 1: Departure & Murree arrival','Day 2: Nathiagali & return'] },
+        { id: 3, name: 'Lahore Heritage Tour', category: 'Family Tours', destination: 'Lahore', description: '3-day culture-rich family tour — Badshahi, Wazir Khan, and Food Street.', image: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=900&q=70', duration: '3 Days / 2 Nights', pricePerPerson: 32000, capacity: 25, seatsTaken: 8, departureDate: '2026-05-20', bookingDeadline: '2026-05-12', includes: ['Transport', 'Hotel', 'Breakfast', 'Guide'], excludes: ['Entry tickets', 'Lunch'], itinerary: ['Day 1: Arrival & Fort','Day 2: Museums & Food Street','Day 3: Wagah Border & return'] },
+        { id: 4, name: 'Swat Honeymoon Retreat', category: 'Honeymoon Packages', destination: 'Swat', description: '5-day romantic stay in Kalam and Malam Jabba with private transfers.', image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=70', duration: '5 Days / 4 Nights', pricePerPerson: 55000, capacity: 12, seatsTaken: 2, departureDate: '2026-06-08', bookingDeadline: '2026-05-30', includes: ['Private car', 'Boutique hotels', 'Breakfast', 'Couple activities'], excludes: ['Flights'], itinerary: ['Day 1: Islamabad → Swat','Day 2: Kalam','Day 3: Mahodand Lake','Day 4: Malam Jabba','Day 5: Return'] },
+        { id: 5, name: 'Skardu Adventure', category: 'Group Trips', destination: 'Skardu', description: '6-day group expedition — Shangrila, Deosai, and Shigar.', image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=70', duration: '6 Days / 5 Nights', pricePerPerson: 72000, capacity: 16, seatsTaken: 10, departureDate: '2026-07-01', bookingDeadline: '2026-06-20', includes: ['Transport', 'Camping', 'Meals', 'Guide'], excludes: ['Airfare', 'Insurance'], itinerary: ['Day 1: Islamabad → Skardu','Day 2: Shangrila','Day 3: Deosai','Day 4: Shigar','Day 5: Khaplu','Day 6: Return'] }
+      ],
+      routes: [
+        { id: 1, origin: 'Karachi', destination: 'Hyderabad', durationMin: 120, baseFare: 1800 },
+        { id: 2, origin: 'Karachi', destination: 'Lahore', durationMin: 780, baseFare: 6500 },
+        { id: 3, origin: 'Karachi', destination: 'Islamabad', durationMin: 900, baseFare: 7200 },
+        { id: 4, origin: 'Lahore', destination: 'Islamabad', durationMin: 270, baseFare: 3200 },
+        { id: 5, origin: 'Lahore', destination: 'Murree', durationMin: 240, baseFare: 2800 },
+        { id: 6, origin: 'Islamabad', destination: 'Murree', durationMin: 90, baseFare: 1800 },
+        { id: 7, origin: 'Islamabad', destination: 'Hunza', durationMin: 720, baseFare: 8500 },
+        { id: 8, origin: 'Islamabad', destination: 'Skardu', durationMin: 840, baseFare: 9500 },
+        { id: 9, origin: 'Karachi', destination: 'Sukkur', durationMin: 300, baseFare: 3000 },
+        { id: 10, origin: 'Islamabad', destination: 'Swat', durationMin: 300, baseFare: 3500 }
+      ],
+      trips: [
+        { id: 1, routeId: 2, operator: 'Daewoo Express', busType: 'Luxury', departure: '2026-05-10T07:00', arrival: '2026-05-10T20:00', fare: 7200, totalSeats: 40, amenities: ['AC', 'WiFi', 'Refreshments', 'Reclining Seats'] },
+        { id: 2, routeId: 2, operator: 'Faisal Movers', busType: 'Business', departure: '2026-05-10T09:30', arrival: '2026-05-10T22:30', fare: 6500, totalSeats: 40, amenities: ['AC', 'Refreshments'] },
+        { id: 3, routeId: 2, operator: 'Daewoo Express', busType: 'Standard', departure: '2026-05-10T22:00', arrival: '2026-05-11T11:00', fare: 5800, totalSeats: 40, amenities: ['AC'] },
+        { id: 4, routeId: 3, operator: 'Faisal Movers', busType: 'Luxury', departure: '2026-05-10T20:00', arrival: '2026-05-11T11:00', fare: 8200, totalSeats: 40, amenities: ['AC', 'WiFi', 'Refreshments', 'Reclining Seats'] },
+        { id: 5, routeId: 6, operator: 'Niazi Express', busType: 'Standard', departure: '2026-05-10T08:00', arrival: '2026-05-10T09:30', fare: 1700, totalSeats: 30, amenities: ['AC'] },
+        { id: 6, routeId: 6, operator: 'Skyways', busType: 'Business', departure: '2026-05-10T14:00', arrival: '2026-05-10T15:30', fare: 2200, totalSeats: 30, amenities: ['AC', 'WiFi'] },
+        { id: 7, routeId: 7, operator: 'Faisal Movers', busType: 'Business', departure: '2026-05-10T19:00', arrival: '2026-05-11T07:00', fare: 8500, totalSeats: 40, amenities: ['AC', 'Refreshments'] }
+      ],
+      bookings: [],
+      payments: [],
+      inquiries: [],
+      reviews: [], // empty until real reviews
+      content: {
+        heroTitle: 'Discover Pakistan. Travel With Confidence.',
+        heroSubtitle: 'Premium bus tickets, curated travel packages, and unforgettable journeys across Pakistan — trusted by travelers, backed by 24/7 support.',
+        contactEmail: 'info@daniyaltravel.pk',
+        contactPhone: '+92 21 1234 5678',
+        announcements: []
+      }
+    };
+    this.save(db);
+    return db;
+  },
+  init() { const d = this.load(); if (!d) this.seed(); },
+  get() { return this.load(); },
+  set(db) { this.save(db); }
+};
+
+function nowISO(){ return new Date().toISOString(); }
+function uid(){ return Date.now() + Math.floor(Math.random()*1000); }
+function ref(){ const s = 'DTS-' + Math.random().toString(36).substr(2,6).toUpperCase(); return s; }
+function fmtPKR(n){ return 'PKR ' + Number(n).toLocaleString('en-PK'); }
+function fmtDate(iso){ return new Date(iso).toLocaleDateString('en-PK', { day:'numeric', month:'short', year:'numeric' }); }
+function fmtTime(iso){ return new Date(iso).toLocaleTimeString('en-PK', { hour:'2-digit', minute:'2-digit' }); }
+function fmtDateTime(iso){ return fmtDate(iso) + ' · ' + fmtTime(iso); }
+function escapeHTML(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* ---------------- TOAST ---------------- */
+const Toast = {
+  show(title, msg, type='info') {
+    const wrap = document.getElementById('toastWrap');
+    const el = document.createElement('div');
+    el.className = 'toast ' + type;
+    el.innerHTML = `<strong>${escapeHTML(title)}</strong><small>${escapeHTML(msg||'')}</small>`;
+    wrap.appendChild(el);
+    setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateX(40px)'; setTimeout(()=>el.remove(),300); }, 4000);
+  },
+  success(t,m){ this.show(t,m,'success'); },
+  error(t,m){ this.show(t,m,'error'); },
+  warn(t,m){ this.show(t,m,'warning'); }
+};
+
+/* ---------------- MODAL ---------------- */
+const Modal = {
+  open(title, bodyHTML, footHTML) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalBody').innerHTML = bodyHTML;
+    document.getElementById('modalFoot').innerHTML = footHTML || '';
+    document.getElementById('modalBackdrop').classList.add('show');
+  },
+  close(){ document.getElementById('modalBackdrop').classList.remove('show'); }
+};
+document.addEventListener('keydown', e => { if (e.key === 'Escape') Modal.close(); });
+
+/* ---------------- AUTH ---------------- */
+const Auth = {
+  current() {
+    const db = Store.get();
+    if (!db.session) return null;
+    return db.users.find(u => u.id === db.session.userId) || null;
+  },
+  login(email, password) {
+    const db = Store.get();
+    const u = db.users.find(x => x.email.toLowerCase() === email.toLowerCase());
+    if (!u) throw new Error('No account found with that email.');
+    if (u.password !== password) throw new Error('Incorrect password.');
+    db.session = { userId: u.id, role: u.role };
+    Store.set(db);
+    return u;
+  },
+  register(fullName, email, phone, password) {
+    const db = Store.get();
+    if (db.users.find(u => u.email.toLowerCase() === email.toLowerCase()))
+      throw new Error('An account with this email already exists.');
+    if (password.length < 6) throw new Error('Password must be at least 6 characters.');
+    const u = { id: uid(), email, password, fullName, phone, role: 'CUSTOMER', createdAt: nowISO() };
+    db.users.push(u);
+    db.session = { userId: u.id, role: u.role };
+    Store.set(db);
+    return u;
+  },
+  logout() {
+    const db = Store.get();
+    db.session = null;
+    Store.set(db);
+    Toast.success('Signed out', 'You have been signed out.');
+    Router.go('/');
+  },
+  requireAuth(redirect) {
+    if (!this.current()) {
+      Toast.warn('Sign in required', 'Please sign in to continue.');
+      Router.go('/login?next=' + encodeURIComponent(redirect || location.hash));
+      return false;
+    }
+    return true;
+  },
+  requireAdmin() {
+    const u = this.current();
+    if (!u || u.role !== 'ADMIN') {
+      Toast.error('Access denied', 'Administrator access is required.');
+      Router.go('/');
+      return false;
+    }
+    return true;
+  }
+};
+
+/* ---------------- BOOKING LOGIC ---------------- */
+const Bookings = {
+  createBus({ tripId, seatNumbers, passengers, contact, userId }) {
+    const db = Store.get();
+    const trip = db.trips.find(t => t.id === tripId);
+    if (!trip) throw new Error('Trip not found.');
+
+    // Server-side style validation of availability
+    const taken = new Set(
+      db.bookings
+        .filter(b => b.type === 'BUS' && b.tripId === tripId && b.status !== 'CANCELLED')
+        .flatMap(b => b.seatNumbers)
+    );
+    for (const sn of seatNumbers) {
+      if (taken.has(sn)) throw new Error('Seat ' + sn + ' is no longer available.');
+    }
+
+    const subtotal = trip.fare * seatNumbers.length;
+    const serviceFee = 150 * seatNumbers.length;
+    const total = subtotal + serviceFee;
+
+    const booking = {
+      id: uid(), reference: ref(), type: 'BUS',
+      tripId, seatNumbers, passengers,
+      contactName: contact.fullName, contactPhone: contact.phone, contactEmail: contact.email,
+      subtotal, serviceFee, total,
+      status: 'PENDING_PAYMENT', paymentStatus: 'UNPAID',
+      userId: userId || null, createdAt: nowISO(),
+      tripSnapshot: { operator: trip.operator, busType: trip.busType, departure: trip.departure, arrival: trip.arrival, fare: trip.fare, route: db.routes.find(r => r.id === trip.routeId) }
+    };
+    db.bookings.push(booking);
+    Store.set(db);
+    return booking;
+  },
+  createPackage({ packageId, travelers, contact, userId }) {
+    const db = Store.get();
+    const p = db.packages.find(x => x.id === packageId);
+    if (!p) throw new Error('Package not found.');
+    const available = p.capacity - p.seatsTaken;
+    if (travelers > available) throw new Error('Only ' + available + ' seats remaining.');
+    const total = p.pricePerPerson * travelers;
+    const booking = {
+      id: uid(), reference: ref(), type: 'PACKAGE',
+      packageId, travelers,
+      contactName: contact.fullName, contactPhone: contact.phone, contactEmail: contact.email,
+      subtotal: total, serviceFee: 0, total,
+      status: 'PENDING_CONFIRMATION', paymentStatus: 'UNPAID',
+      userId: userId || null, createdAt: nowISO(),
+      packageSnapshot: { name: p.name, duration: p.duration, pricePerPerson: p.pricePerPerson, departureDate: p.departureDate }
+    };
+    db.bookings.push(booking);
+    Store.set(db);
+    return booking;
+  },
+  pay(bookingId, method) {
+    const db = Store.get();
+    const b = db.bookings.find(x => x.id === bookingId);
+    if (!b) throw new Error('Booking not found.');
+    const txnId = method === 'MOCK' ? 'MOCK-' + Math.random().toString(36).substr(2,8).toUpperCase() : null;
+    const payment = {
+      id: uid(), bookingId, provider: method, providerTxnId: txnId,
+      amount: b.total, status: method === 'MOCK' ? 'SUCCESS' : 'PENDING',
+      idempotencyKey: 'idem-' + bookingId, createdAt: nowISO()
+    };
+    db.payments.push(payment);
+    if (method === 'MOCK') {
+      b.paymentStatus = 'PAID';
+      b.status = 'CONFIRMED';
+    } else {
+      b.paymentStatus = 'PENDING';
+      b.status = 'PENDING_CONFIRMATION';
+    }
+    Store.set(db);
+    return b;
+  },
+  cancel(bookingId, userId, isAdmin) {
+    const db = Store.get();
+    const b = db.bookings.find(x => x.id === bookingId);
+    if (!b) throw new Error('Booking not found.');
+    if (!isAdmin && b.userId !== userId) throw new Error('You do not own this booking.');
+    if (['CANCELLED','COMPLETED','REFUNDED'].includes(b.status)) throw new Error('Booking cannot be cancelled.');
+    b.status = 'CANCELLED';
+    if (b.paymentStatus === 'PAID') b.paymentStatus = 'REFUNDED';
+    Store.set(db);
+    return b;
+  }
+};
+
+/* ---------------- ROUTER ---------------- */
+const Router = {
+  routes: {},
+  register(path, handler) { this.routes[path] = handler; },
+  go(path) {
+    if (location.hash !== '#' + path) location.hash = '#' + path;
+    else this.render();
+  },
+  render() {
+    const hash = location.hash.replace(/^#/, '') || '/';
+    const [path, queryStr] = hash.split('?');
+    const query = Object.fromEntries(new URLSearchParams(queryStr || ''));
+    const handler = this.routes[path] || this.routes['404'];
+    const app = document.getElementById('app');
+    app.innerHTML = '<div class="spinner"></div>';
+    setTimeout(() => {
+      try {
+        const html = handler(query);
+        app.innerHTML = html;
+        bindPageEvents();
+        updateNavActive(path);
+        renderAuthArea();
+        window.scrollTo(0, 0);
+      } catch (e) {
+        console.error(e);
+        app.innerHTML = `<div class="container" style="padding:80px 24px"><div class="empty-state"><div class="icon">⚠</div><h3>Something went wrong</h3><p>${escapeHTML(e.message)}</p><a class="btn btn-primary mt-16" href="#/">Go Home</a></div></div>`;
+      }
+    }, 120);
+  }
+};
+window.addEventListener('hashchange', () => Router.render());
+
+function updateNavActive(path){
+  document.querySelectorAll('[data-link]').forEach(a => {
+    const target = a.getAttribute('data-link');
+    a.classList.toggle('active', path === target || (target !== '/' && path.startsWith(target)));
+  });
+}
+
+function renderAuthArea(){
+  const area = document.getElementById('authArea');
+  const u = Auth.current();
+  if (u) {
+    area.innerHTML = `
+      <a class="btn btn-ghost btn-sm hide-mobile" href="#/account" onclick="Router.go('/account')">My Account</a>
+      ${u.role === 'ADMIN' ? `<a class="btn btn-ghost btn-sm hide-mobile" href="#/admin" onclick="Router.go('/admin')">Admin</a>` : ''}
+      <button class="user-chip" onclick="Auth.logout()" title="Click to sign out">
+        <span class="avatar">${escapeHTML(u.fullName.charAt(0).toUpperCase())}</span>
+        <span class="hide-mobile">${escapeHTML(u.fullName.split(' ')[0])}</span>
+      </button>`;
+  } else {
+    area.innerHTML = `
+      <a class="btn btn-ghost btn-sm hide-mobile" href="#/login" onclick="Router.go('/login')">Sign In</a>
+      <a class="btn btn-primary btn-sm" href="#/register" onclick="Router.go('/register')">Register</a>`;
+  }
+}
+
+/* ---------------- PAGE EVENTS BINDING ---------------- */
+function bindPageEvents(){
+  document.querySelectorAll('[data-action]').forEach(el => {
+    el.addEventListener('click', e => {
+      const action = el.getAttribute('data-action');
+      try {
+        handleAction(action, el, e);
+      } catch (err) {
+        Toast.error('Error', err.message);
+      }
+    });
+  });
+  document.querySelectorAll('form[data-form]').forEach(f => {
+    f.addEventListener('submit', e => {
+      e.preventDefault();
+      try { handleForm(f.getAttribute('data-form'), f); }
+      catch (err) { Toast.error('Error', err.message); }
+    });
+  });
+}
+
+function handleAction(action, el){
+  const map = {
+    'faq-toggle': () => el.parentElement.classList.toggle('open'),
+    'logout': () => Auth.logout(),
+    'open-cancel-booking': () => promptCancel(el.dataset.id),
+    'open-confirm-booking': () => promptConfirm(el.dataset.id),
+    'open-refund': () => promptRefund(el.dataset.id),
+    'copy-ref': () => { navigator.clipboard.writeText(el.dataset.ref); Toast.success('Copied', 'Booking reference copied.'); },
+    'print-ticket': () => window.print(),
+    'toggle-sidebar': () => {},
+  };
+  if (map[action]) return map[action]();
+  throw new Error('Unknown action: ' + action);
+}
+
+/* ---------------- SHARED UI SNIPPETS ---------------- */
+function statusBadge(status){
+  const map = {
+    'PENDING_PAYMENT': 'warning', 'PENDING_CONFIRMATION': 'warning',
+    'CONFIRMED': 'success', 'CANCELLED': 'danger', 'COMPLETED': 'info', 'REFUNDED': 'muted',
+    'UNPAID': 'warning', 'PAID': 'success', 'FAILED': 'danger', 'PENDING': 'warning'
+  };
+  const cls = map[status] || 'muted';
+  return `<span class="badge badge-${cls}">${status.replaceAll('_',' ')}</span>`;
+}
+
+function emptyState(icon, title, msg, cta){
+  return `<div class="empty-state">
+    <div class="icon">${icon}</div>
+    <h3>${escapeHTML(title)}</h3>
+    <p>${escapeHTML(msg)}</p>
+    ${cta || ''}
+  </div>`;
+}
+
+/* ============================================================
+   PAGE: HOME
+   ============================================================ */
+Router.register('/', () => {
+  const db = Store.get();
+  const featured = db.destinations.filter(d => d.featured).slice(0,6);
+  const packages = db.packages.slice(0,3);
+
+  const destCards = featured.map(d => `
+    <div class="card hover img-card">
+      <div class="thumb" style="background-image:url('${d.image}')">
+        ${d.startingPrice ? `<span class="price-tag">From ${fmtPKR(d.startingPrice)}</span>` : ''}
+      </div>
+      <div class="card-body">
+        <h3>${escapeHTML(d.name)}</h3>
+        <p>${escapeHTML(d.description)}</p>
+        <button class="btn btn-outline btn-sm btn-block" data-dest="${d.id}" onclick="Router.go('/destinations/${d.id}')">View Details →</button>
+      </div>
+    </div>`).join('');
+
+  const pkgCards = packages.map(p => `
+    <div class="card hover img-card">
+      <div class="thumb" style="background-image:url('${p.image}')">
+        <span class="price-tag">${fmtPKR(p.pricePerPerson)}/person</span>
+      </div>
+      <div class="card-body">
+        <span class="badge badge-gold mb-16">${escapeHTML(p.category)}</span>
+        <h3>${escapeHTML(p.name)}</h3>
+        <p>${escapeHTML(p.description)}</p>
+        <div class="meta">
+          <span>⏱ ${escapeHTML(p.duration)}</span>
+          <span>👥 ${p.capacity - p.seatsTaken} seats left</span>
+        </div>
+        <button class="btn btn-primary btn-sm btn-block" onclick="Router.go('/packages/${p.id}')">View Package →</button>
+      </div>
+    </div>`).join('');
+
+  return `
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <span class="eyebrow">✦ Trusted Travel Partner Since 2018</span>
+        <h1>${escapeHTML(db.content.heroTitle)}</h1>
+        <p>${escapeHTML(db.content.heroSubtitle)}</p>
+      </div>
+      <div style="margin-top:40px">
+        <form data-form="hero-search" class="search-widget">
+          <div class="field">
+            <label>From</label>
+            <select name="from" required>
+              <option value="">Select city</option>
+              ${db.routes.map(r => r.origin).filter((v,i,a)=>a.indexOf(v)===i).map(c => `<option>${c}</option>`).join('')}
+            </select>
+          </div>
+          <div class="field">
+            <label>To</label>
+            <select name="to" required>
+              <option value="">Select city</option>
+              ${db.routes.map(r => r.destination).filter((v,i,a)=>a.indexOf(v)===i).map(c => `<option>${c}</option>`).join('')}
+            </select>
+          </div>
+          <div class="field"><label>Date</label><input type="date" name="date" required min="${new Date().toISOString().split('T')[0]}"></div>
+          <div class="field"><label>Passengers</label><input type="number" name="passengers" min="1" max="10" value="1" required></div>
+          <button type="submit" class="btn btn-gold btn-lg">Search Buses</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--surface)">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Popular Destinations</span>
+        <h2>Discover the Beauty of Pakistan</h2>
+        <p>From the historic streets of Lahore to the snow-capped peaks of Hunza — explore our most-loved destinations.</p>
+      </div>
+      <div class="grid grid-3">${destCards}</div>
+      <div class="mt-24" style="text-align:center">
+        <button class="btn btn-outline" onclick="Router.go('/destinations')">View All Destinations →</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Recommended Packages</span>
+        <h2>Curated Travel Experiences</h2>
+        <p>Hand-picked tours crafted by our team — all-inclusive, comfortable, and memorable.</p>
+      </div>
+      <div class="grid grid-3">${pkgCards}</div>
+      <div class="mt-24" style="text-align:center">
+        <button class="btn btn-outline" onclick="Router.go('/packages')">Browse All Packages →</button>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--surface)">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Featured Transport</span>
+        <h2>Premium Bus Services</h2>
+      </div>
+      <div class="grid grid-4">
+        ${[
+          {name:'Daewoo Express', desc:'Luxury intercity travel with reclining seats & WiFi', icon:'🚌'},
+          {name:'Faisal Movers', desc:'Business class comfort across Pakistan', icon:'🚐'},
+          {name:'Skyways', desc:'Modern fleet with professional drivers', icon:'🚍'},
+          {name:'Niazi Express', desc:'Economy travel with reliable schedules', icon:'🚎'}
+        ].map(s => `<div class="card" style="padding:24px;text-align:center">
+          <div style="font-size:40px;margin-bottom:12px">${s.icon}</div>
+          <h3 style="margin-bottom:6px">${s.name}</h3>
+          <p style="color:var(--text-muted);font-size:13.5px">${s.desc}</p>
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Why Choose Us</span>
+        <h2>Travel with Confidence</h2>
+      </div>
+      <div class="grid grid-3">
+        ${[
+          {icon:'🛡️', title:'Safe & Verified', desc:'All operators and vehicles are vetted for safety standards and driver credentials.'},
+          {icon:'💰', title:'Transparent Pricing', desc:'No hidden fees. What you see is what you pay, in PKR.'},
+          {icon:'🎯', title:'Curated Packages', desc:'Every itinerary is designed by our travel experts for comfort and value.'},
+          {icon:'📞', title:'24/7 Support', desc:'Our team is available around the clock to help with any issue.'},
+          {icon:'🔒', title:'Secure Booking', desc:'Your booking and personal data are protected end-to-end.'},
+          {icon:'⚡', title:'Instant Confirmation', desc:'Get your ticket instantly with QR-code verification.'}
+        ].map(f => `<div class="feature">
+          <div class="icon">${f.icon}</div>
+          <h3>${f.title}</h3>
+          <p>${f.desc}</p>
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--surface)">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Testimonials</span>
+        <h2>What Travelers Are Saying</h2>
+        <div style="margin-top:16px"><span class="sample-note">⚠ Sample Content — Not Real Customer Reviews</span></div>
+      </div>
+      <div class="grid grid-3">
+        ${[
+          {q:'The Hunza tour was magical. Our guide was knowledgeable and the hotels were top-notch.', n:'Fatima R.', c:'Lahore'},
+          {q:'Booked a bus ticket through the app — smooth experience, clear pricing, quick confirmation.', n:'Bilal S.', c:'Karachi'},
+          {q:'Customer support helped us re-plan a cancelled trip without any hassle. Really impressed.', n:'Ayesha M.', c:'Islamabad'}
+        ].map(t => `<div class="testimonial">
+          <div class="quote">"${t.q}"</div>
+          <div class="who">
+            <div class="avatar">${t.n.charAt(0)}</div>
+            <div><strong>${t.n}</strong><small>${t.c}</small></div>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">FAQ</span>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div style="max-width:760px;margin:0 auto">
+        ${[
+          {q:'How do I book a bus ticket?', a:'Search for your route, choose a trip, select seats, enter passenger details, and complete payment. You will instantly receive a booking reference and printable ticket.'},
+          {q:'Can I cancel my booking?', a:'Yes. Cancellations are allowed up to 24 hours before departure. Refunds are processed according to our cancellation policy.'},
+          {q:'Are payments secure?', a:'Yes. In the production system, payments are processed through verified providers. In this demo, no real payment is processed.'},
+          {q:'Do packages include meals?', a:'Most packages include breakfast and dinner. Check each package\'s Inclusions list for exact details.'},
+          {q:'How do I receive my ticket?', a:'After confirmation you can view and print your ticket from My Bookings. It includes a QR code for verification.'}
+        ].map(f => `<div class="faq-item">
+          <button class="faq-q" data-action="faq-toggle">
+            <span>${escapeHTML(f.q)}</span><span class="chev">▾</span>
+          </button>
+          <div class="faq-a">${escapeHTML(f.a)}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>
+  `;
+});
+
+/* ============================================================
+   PAGE: DESTINATIONS
+   ============================================================ */
+Router.register('/destinations', () => {
+  const db = Store.get();
+  return `
+  <div class="page-hero">
+    <div class="container">
+      <h1>Destinations</h1>
+      <p>Explore Pakistan's most beautiful cities and regions — from coastal Karachi to the peaks of Hunza.</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px">
+    <div class="grid grid-3">
+      ${db.destinations.map(d => `
+        <div class="card hover img-card">
+          <div class="thumb" style="background-image:url('${d.image}')">
+            ${d.startingPrice ? `<span class="price-tag">From ${fmtPKR(d.startingPrice)}</span>` : ''}
+          </div>
+          <div class="card-body">
+            <h3>${escapeHTML(d.name)}</h3>
+            <small style="color:var(--gold-500);font-weight:600;display:block;margin-bottom:6px">${escapeHTML(d.tagline)}</small>
+            <p>${escapeHTML(d.description)}</p>
+            <button class="btn btn-primary btn-sm btn-block" onclick="Router.go('/destinations/${d.id}')">View Details →</button>
+          </div>
+        </div>`).join('')}
+    </div>
+  </div>`;
+});
+
+Router.register('/destinations/1', () => destinationDetail(1));
+Router.register('/destinations/2', () => destinationDetail(2));
+Router.register('/destinations/3', () => destinationDetail(3));
+Router.register('/destinations/4', () => destinationDetail(4));
+Router.register('/destinations/5', () => destinationDetail(5));
+Router.register('/destinations/6', () => destinationDetail(6));
+Router.register('/destinations/7', () => destinationDetail(7));
+Router.register('/destinations/8', () => destinationDetail(8));
+Router.register('/destinations/9', () => destinationDetail(9));
+
+function destinationDetail(id){
+  const db = Store.get();
+  const d = db.destinations.find(x => x.id === Number(id));
+  if (!d) return emptyState('🌍','Not found','Destination not available.','<a class="btn btn-primary mt-16" href="#/">Home</a>');
+  const relatedPkgs = db.packages.filter(p => p.destination === d.name);
+  return `
+  <div class="page-hero" style="background-image:url('${d.image}');background-size:cover;background-position:center;position:relative">
+    <div style="position:absolute;inset:0;background:rgba(10,26,47,.65)"></div>
+    <div class="container" style="position:relative;z-index:2">
+      <button class="btn btn-ghost" style="color:#fff;margin-bottom:16px" onclick="Router.go('/destinations')">← All Destinations</button>
+      <h1>${escapeHTML(d.name)}</h1>
+      <p>${escapeHTML(d.tagline)}</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px">
+    <div class="grid grid-2" style="gap:32px">
+      <div>
+        <h2 style="margin-bottom:16px">About ${escapeHTML(d.name)}</h2>
+        <p style="color:var(--text-muted);font-size:15px;line-height:1.8;margin-bottom:24px">${escapeHTML(d.description)}</p>
+        ${d.startingPrice ? `<div class="card" style="padding:20px"><div style="font-size:12.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">Starting from</div><div style="font-size:28px;font-weight:700;color:var(--navy-900);font-family:var(--font-display);margin-top:4px">${fmtPKR(d.startingPrice)}</div></div>` : ''}
+      </div>
+      <div>
+        <h3 style="margin-bottom:16px">Related Packages</h3>
+        ${relatedPkgs.length === 0 ? emptyState('📦','No packages yet','Packages for this destination are being prepared.','') :
+          relatedPkgs.map(p => `<div class="card hover" style="margin-bottom:16px;display:flex;gap:16px;align-items:center;padding:16px;cursor:pointer" onclick="Router.go('/packages/${p.id}')">
+            <div style="width:100px;height:80px;border-radius:10px;background-image:url('${p.image}');background-size:cover;flex-shrink:0"></div>
+            <div style="flex:1">
+              <strong style="display:block;margin-bottom:4px">${escapeHTML(p.name)}</strong>
+              <small style="color:var(--text-muted)">${escapeHTML(p.duration)} · ${fmtPKR(p.pricePerPerson)}/person</small>
+            </div>
+          </div>`).join('')}
+        <div class="card" style="padding:20px;background:var(--navy-900);color:#fff;margin-top:16px">
+          <h3 style="color:#fff;margin-bottom:12px">Available Bus Routes</h3>
+          <div style="font-size:13.5px;color:rgba(255,255,255,.8)">
+            ${db.routes.filter(r => r.origin === d.name || r.destination === d.name).map(r =>
+              `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+                <span>${escapeHTML(r.origin)} → ${escapeHTML(r.destination)}</span>
+                <span style="font-weight:600">${fmtPKR(r.baseFare)}</span>
+              </div>`).join('') || '<div>No direct routes listed.</div>'}
+          </div>
+          <button class="btn btn-gold btn-sm btn-block mt-16" onclick="Router.go('/bus')">Book a Bus</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   PAGE: PACKAGES
+   ============================================================ */
+Router.register('/packages', (q) => {
+  const db = Store.get();
+  const cat = q.category || '';
+  const cats = [...new Set(db.packages.map(p => p.category))];
+  const list = cat ? db.packages.filter(p => p.category === cat) : db.packages;
+  return `
+  <div class="page-hero">
+    <div class="container">
+      <h1>Travel Packages</h1>
+      <p>Curated group tours, family trips, and honeymoon retreats across Pakistan.</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px">
+    <div class="pill-tabs mb-24">
+      <button class="${!cat?'active':''}" onclick="Router.go('/packages')">All Packages</button>
+      ${cats.map(c => `<button class="${cat===c?'active':''}" onclick="Router.go('/packages?category=${encodeURIComponent(c)}')">${escapeHTML(c)}</button>`).join('')}
+    </div>
+    ${list.length === 0 ? emptyState('📦','No packages','Try another category.','') : `
+    <div class="grid grid-3">
+      ${list.map(p => `
+        <div class="card hover img-card">
+          <div class="thumb" style="background-image:url('${p.image}')">
+            <span class="price-tag">${fmtPKR(p.pricePerPerson)}/person</span>
+          </div>
+          <div class="card-body">
+            <span class="badge badge-gold mb-16">${escapeHTML(p.category)}</span>
+            <h3>${escapeHTML(p.name)}</h3>
+            <p>${escapeHTML(p.description)}</p>
+            <div class="meta">
+              <span>⏱ ${escapeHTML(p.duration)}</span>
+              <span>👥 ${p.capacity - p.seatsTaken} seats left</span>
+              <span>📅 ${fmtDate(p.departureDate)}</span>
+            </div>
+            <button class="btn btn-primary btn-sm btn-block" onclick="Router.go('/packages/${p.id}')">View Package →</button>
+          </div>
+        </div>`).join('')}
+    </div>`}
+  </div>`;
+});
+
+['1','2','3','4','5'].forEach(id => Router.register('/packages/' + id, () => packageDetail(id)));
+function packageDetail(id){
+  const db = Store.get();
+  const p = db.packages.find(x => x.id === Number(id));
+  if (!p) return emptyState('📦','Not found','Package not available.','');
+  const seatsLeft = p.capacity - p.seatsTaken;
+  return `
+  <div class="page-hero" style="background-image:url('${p.image}');background-size:cover;background-position:center;position:relative">
+    <div style="position:absolute;inset:0;background:rgba(10,26,47,.7)"></div>
+    <div class="container" style="position:relative;z-index:2">
+      <button class="btn btn-ghost" style="color:#fff;margin-bottom:16px" onclick="Router.go('/packages')">← All Packages</button>
+      <span class="badge badge-gold" style="margin-bottom:12px">${escapeHTML(p.category)}</span>
+      <h1>${escapeHTML(p.name)}</h1>
+      <p>${escapeHTML(p.description)}</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px">
+    <div class="grid grid-3" style="gap:32px;grid-template-columns:2fr 1fr">
+      <div>
+        <div class="panel">
+          <div class="panel-head"><h3>Itinerary</h3></div>
+          <div class="panel-body">
+            <ol style="list-style:none;padding:0">
+              ${p.itinerary.map((step, i) => `<li style="padding:10px 0;border-bottom:1px solid var(--border);display:flex;gap:14px"><span style="width:28px;height:28px;border-radius:50%;background:var(--navy-800);color:var(--gold-500);display:grid;place-items:center;font-weight:700;font-size:12px;flex-shrink:0">${i+1}</span><span>${escapeHTML(step)}</span></li>`).join('')}
+            </ol>
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="panel">
+            <div class="panel-head"><h3>✓ Included</h3></div>
+            <div class="panel-body">
+              <ul style="list-style:none;padding:0">${p.includes.map(i => `<li style="padding:6px 0;color:var(--success)">✓ ${escapeHTML(i)}</li>`).join('')}</ul>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3>✕ Not Included</h3></div>
+            <div class="panel-body">
+              <ul style="list-style:none;padding:0">${p.excludes.map(i => `<li style="padding:6px 0;color:var(--text-muted)">✕ ${escapeHTML(i)}</li>`).join('')}</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="padding:24px;position:sticky;top:90px">
+          <div style="font-size:12.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">Price per person</div>
+          <div style="font-size:32px;font-weight:700;color:var(--navy-900);font-family:var(--font-display);margin-bottom:4px">${fmtPKR(p.pricePerPerson)}</div>
+          <div class="divider"></div>
+          <div style="font-size:13.5px;margin-bottom:8px;display:flex;justify-content:space-between"><span class="muted">Duration</span><strong>${escapeHTML(p.duration)}</strong></div>
+          <div style="font-size:13.5px;margin-bottom:8px;display:flex;justify-content:space-between"><span class="muted">Departure</span><strong>${fmtDate(p.departureDate)}</strong></div>
+          <div style="font-size:13.5px;margin-bottom:8px;display:flex;justify-content:space-between"><span class="muted">Booking deadline</span><strong>${fmtDate(p.bookingDeadline)}</strong></div>
+          <div style="font-size:13.5px;margin-bottom:16px;display:flex;justify-content:space-between"><span class="muted">Seats available</span><strong>${seatsLeft}</strong></div>
+          <form data-form="reserve-package" data-id="${p.id}">
+            <div class="field mb-16">
+              <label>Number of travelers</label>
+              <input type="number" name="travelers" min="1" max="${seatsLeft}" value="1" required>
+            </div>
+            <button type="submit" class="btn btn-gold btn-block">Reserve Now</button>
+          </form>
+          <p style="font-size:11.5px;color:var(--text-muted);margin-top:12px;text-align:center">Free cancellation up to 7 days before departure.</p>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   PAGE: BUS SEARCH
+   ============================================================ */
+Router.register('/bus', () => {
+  const db = Store.get();
+  const origins = [...new Set(db.routes.map(r => r.origin))];
+  const destinations = [...new Set(db.routes.map(r => r.destination))];
+  return `
+  <div class="page-hero">
+    <div class="container">
+      <h1>Book Bus Tickets</h1>
+      <p>Search from hundreds of intercity routes across Pakistan with instant confirmation.</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px">
+    <form data-form="bus-search" class="filters-bar" style="padding:24px">
+      <div class="field" style="flex:1;min-width:180px">
+        <label>From</label>
+        <select name="from" required>
+          <option value="">Select origin</option>
+          ${origins.map(o => `<option>${o}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field" style="flex:1;min-width:180px">
+        <label>To</label>
+        <select name="to" required>
+          <option value="">Select destination</option>
+          ${destinations.map(o => `<option>${o}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field" style="flex:1;min-width:150px">
+        <label>Travel Date</label>
+        <input type="date" name="date" required min="${new Date().toISOString().split('T')[0]}" value="${new Date().toISOString().split('T')[0]}">
+      </div>
+      <div class="field" style="flex:0 0 130px">
+        <label>Passengers</label>
+        <input type="number" name="passengers" min="1" max="10" value="1" required>
+      </div>
+      <button type="submit" class="btn btn-gold btn-lg" style="align-self:end">Search</button>
+    </form>
+    <div class="grid grid-3" style="margin-top:32px">
+      ${db.routes.slice(0,6).map(r => `
+        <div class="card" style="padding:20px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+            <strong>${escapeHTML(r.origin)} → ${escapeHTML(r.destination)}</strong>
+            <span class="badge badge-gold">${fmtPKR(r.baseFare)}</span>
+          </div>
+          <small class="muted">Duration: ${Math.floor(r.durationMin/60)}h ${r.durationMin%60}m</small>
+        </div>`).join('')}
+    </div>
+  </div>`;
+});
+
+/* ============================================================
+   PAGE: SEARCH RESULTS
+   ============================================================ */
+Router.register('/bus/search', (q) => {
+  const db = Store.get();
+  const from = q.from, to = q.to, date = q.date, passengers = Number(q.passengers)||1;
+  const route = db.routes.find(r => r.origin === from && r.destination === to);
+  if (!route) return `<div class="container" style="padding:60px 24px">${emptyState('🚌','No routes found','We don\'t currently operate between those cities. Try a different route.','<button class="btn btn-primary mt-16" onclick="Router.go(\'/bus\')">Search Again</button>')}</div>`;
+
+  let trips = db.trips.filter(t => t.routeId === route.id);
+  // Apply filters
+  const filterType = q.type || 'all';
+  const sort = q.sort || 'departure';
+  if (filterType !== 'all') trips = trips.filter(t => t.busType === filterType);
+  if (sort === 'price') trips.sort((a,b) => a.fare - b.fare);
+  else if (sort === 'duration') trips.sort((a,b) => new Date(a.arrival) - new Date(b.departure) - (new Date(b.arrival) - new Date(b.departure)));
+  else trips.sort((a,b) => new Date(a.departure) - new Date(b.departure));
+
+  const types = [...new Set(db.trips.filter(t => t.routeId === route.id).map(t => t.busType))];
+
+  return `
+  <div class="page-hero">
+    <div class="container">
+      <h1>${escapeHTML(from)} → ${escapeHTML(to)}</h1>
+      <p>${fmtDate(date)} · ${passengers} passenger${passengers>1?'s':''} · ${trips.length} trip${trips.length!==1?'s':''} available</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px">
+    <div class="filters-bar">
+      <div class="field" style="min-width:160px">
+        <label>Bus type</label>
+        <select id="filterType" onchange="applyFilters()">
+          <option value="all" ${filterType==='all'?'selected':''}>All types</option>
+          ${types.map(t => `<option ${filterType===t?'selected':''}>${t}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field" style="min-width:160px">
+        <label>Sort by</label>
+        <select id="sortBy" onchange="applyFilters()">
+          <option value="departure" ${sort==='departure'?'selected':''}>Departure time</option>
+          <option value="price" ${sort==='price'?'selected':''}>Lowest price</option>
+          <option value="duration" ${sort==='duration'?'selected':''}>Shortest duration</option>
+        </select>
+      </div>
+      <div style="flex:1"></div>
+      <button class="btn btn-outline btn-sm" onclick="Router.go('/bus')">← Search Again</button>
+    </div>
+    ${trips.length === 0 ? emptyState('🚌','No trips match','Try adjusting filters or dates.','') : trips.map(t => {
+      const booked = new Set(db.bookings.filter(b => b.type==='BUS' && b.tripId===t.id && b.status!=='CANCELLED').flatMap(b => b.seatNumbers));
+      const available = t.totalSeats - booked.size;
+      const durMin = Math.floor((new Date(t.arrival) - new Date(t.departure))/60000);
+      return `
+      <div class="card" style="padding:24px;margin-bottom:16px">
+        <div class="flex between wrap gap-16">
+          <div style="flex:1;min-width:280px">
+            <div class="flex center gap-16 wrap" style="margin-bottom:12px">
+              <strong style="font-size:16px">${escapeHTML(t.operator)}</strong>
+              <span class="badge badge-info">${escapeHTML(t.busType)}</span>
+            </div>
+            <div class="flex center gap-20 wrap">
+              <div>
+                <div style="font-size:20px;font-weight:700;color:var(--navy-900)">${fmtTime(t.departure)}</div>
+                <small class="muted">${escapeHTML(from)}</small>
+              </div>
+              <div style="color:var(--text-muted);font-size:13px;text-align:center">
+                <div>— ${Math.floor(durMin/60)}h ${durMin%60}m —</div>
+                <small>${fmtDate(t.departure)}</small>
+              </div>
+              <div>
+                <div style="font-size:20px;font-weight:700;color:var(--navy-900)">${fmtTime(t.arrival)}</div>
+                <small class="muted">${escapeHTML(to)}</small>
+              </div>
+            </div>
+            <div class="meta" style="margin-top:12px">
+              ${t.amenities.map(a => `<span>✓ ${escapeHTML(a)}</span>`).join('')}
+            </div>
+          </div>
+          <div style="text-align:right;min-width:150px">
+            <div style="font-size:24px;font-weight:700;color:var(--navy-900);font-family:var(--font-display)">${fmtPKR(t.fare)}</div>
+            <small class="muted">per passenger</small>
+            <div style="font-size:13px;color:${available < 10 ? 'var(--danger)' : 'var(--success)'};font-weight:600;margin:8px 0">${available} seat${available!==1?'s':''} left</div>
+            <button class="btn btn-gold btn-sm btn-block" onclick="Router.go('/bus/select?tripId=${t.id}&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${date}&passengers=${passengers}')" ${available < passengers?'disabled':''}>Select Seats</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`;
+});
+
+function applyFilters(){
+  const p = new URLSearchParams(location.hash.split('?')[1]);
+  p.set('type', document.getElementById('filterType').value);
+  p.set('sort', document.getElementById('sortBy').value);
+  Router.go('/bus/search?' + p.toString());
+}
+
+/* ============================================================
+   PAGE: SEAT SELECTION
+   ============================================================ */
+Router.register('/bus/select', (q) => {
+  const db = Store.get();
+  const trip = db.trips.find(t => t.id === Number(q.tripId));
+  if (!trip) return emptyState('🚌','Trip not found','','');
+  const route = db.routes.find(r => r.id === trip.routeId);
+  const booked = new Set(db.bookings.filter(b => b.type==='BUS' && b.tripId===trip.id && b.status!=='CANCELLED').flatMap(b => b.seatNumbers));
+  const rows = Math.ceil(trip.totalSeats / 4);
+  const seatLetters = ['A','B','C','D'];
+
+  let seatMap = '<div class="driver">Driver</div>';
+  for (let r = 0; r < rows; r++) {
+    const row = [];
+    for (let c = 0; c < 4; c++) {
+      const idx = r*4 + c;
+      const seatNum = `${r+1}${seatLetters[c]}`;
+      const isBooked = booked.has(seatNum);
+      row.push(`<button type="button" class="seat ${isBooked?'booked':''}" data-seat="${seatNum}" ${isBooked?'disabled':''}>${seatNum}</button>`);
+      if (c === 1) row.push('<div class="aisle"></div>');
+    }
+    seatMap += `<div class="seat-row">${row.join('')}</div>`;
+  }
+
+  return `
+  <div class="page-hero">
+    <div class="container">
+      <h1>Select Your Seats</h1>
+      <p>${escapeHTML(trip.operator)} · ${escapeHTML(route.origin)} → ${escapeHTML(route.destination)} · ${fmtDateTime(trip.departure)}</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px">
+    <div class="grid grid-2" style="grid-template-columns:1fr 320px;gap:32px">
+      <div>
+        <div class="card" style="padding:24px">
+          <div class="seat-legend">
+            <span><span class="legend-dot" style="background:#fff;border:1.5px solid var(--border)"></span>Available</span>
+            <span><span class="legend-dot" style="background:var(--gold-500)"></span>Selected</span>
+            <span><span class="legend-dot" style="background:#E2E7EE"></span>Booked</span>
+          </div>
+          <div class="seat-map" id="seatMap">${seatMap}</div>
+          <p style="text-align:center;color:var(--text-muted);font-size:12.5px;margin-top:16px">Tap a seat to select. Up to ${q.passengers} seat(s) required.</p>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="padding:24px;position:sticky;top:90px">
+          <h3 style="margin-bottom:16px">Booking Summary</h3>
+          <div style="font-size:13.5px;color:var(--text-muted);margin-bottom:12px" id="selectedInfo">No seats selected yet</div>
+          <div class="divider"></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px"><span class="muted">Selected seats</span><strong id="sumSeats">—</strong></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px"><span class="muted">Fare × seats</span><strong id="sumFare">—</strong></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px"><span class="muted">Service fee</span><strong id="sumFee">—</strong></div>
+          <div class="divider"></div>
+          <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:var(--navy-900)"><span>Total</span><span id="sumTotal">—</span></div>
+          <button class="btn btn-gold btn-block mt-16" id="continueBtn" disabled onclick="continueToCheckout(${trip.id})">Continue to Checkout</button>
+          <p style="font-size:11.5px;color:var(--text-muted);margin-top:12px">Your selection is held while you check out.</p>
+        </div>
+      </div>
+    </div>
+  </div>`;
+});
+
+let selectedSeats = [];
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('seat') && !e.target.disabled) {
+    const seat = e.target.dataset.seat;
+    if (selectedSeats.includes(seat)) {
+      selectedSeats = selectedSeats.filter(s => s !== seat);
+      e.target.classList.remove('selected');
+    } else {
+      const max = Number(new URLSearchParams(location.hash.split('?')[1]).get('passengers')) || 1;
+      if (selectedSeats.length >= max) { Toast.warn('Limit reached', `You can select up to ${max} seat(s).`); return; }
+      selectedSeats.push(seat);
+      e.target.classList.add('selected');
+    }
+    updateSeatSummary();
+  }
+});
+
+function updateSeatSummary(){
+  const q = Object.fromEntries(new URLSearchParams(location.hash.split('?')[1]));
+  const db = Store.get();
+  const trip = db.trips.find(t => t.id === Number(q.tripId));
+  const sumSeats = document.getElementById('sumSeats');
+  const sumFare = document.getElementById('sumFare');
+  const sumFee = document.getElementById('sumFee');
+  const sumTotal = document.getElementById('sumTotal');
+  const btn = document.getElementById('continueBtn');
+  const info = document.getElementById('selectedInfo');
+  if (!sumSeats) return;
+  if (selectedSeats.length === 0) {
+    info.textContent = 'No seats selected yet';
+    sumSeats.textContent = '—'; sumFare.textContent = '—'; sumFee.textContent = '—'; sumTotal.textContent = '—';
+    btn.disabled = true; return;
+  }
+  const fare = trip.fare * selectedSeats.length;
+  const fee = 150 * selectedSeats.length;
+  info.innerHTML = `<strong style="color:var(--navy-900)">Seats:</strong> ${selectedSeats.sort().join(', ')}`;
+  sumSeats.textContent = selectedSeats.length;
+  sumFare.textContent = fmtPKR(fare);
+  sumFee.textContent = fmtPKR(fee);
+  sumTotal.textContent = fmtPKR(fare + fee);
+  btn.disabled = false;
+}
+
+function continueToCheckout(tripId){
+  if (selectedSeats.length === 0) return;
+  const q = new URLSearchParams(location.hash.split('?')[1]);
+  q.set('seats', selectedSeats.join(','));
+  Router.go('/checkout?' + q.toString());
+}
+
+/* ============================================================
+   PAGE: CHECKOUT
+   ============================================================ */
+Router.register('/checkout', (q) => {
+  const db = Store.get();
+  const trip = db.trips.find(t => t.id === Number(q.tripId));
+  if (!trip) return emptyState('🚌','Trip not found','','');
+  const route = db.routes.find(r => r.id === trip.routeId);
+  const seatArr = (q.seats || '').split(',').filter(Boolean);
+  if (seatArr.length === 0) return emptyState('💺','No seats','','<button class="btn btn-primary mt-16" onclick="Router.go(\'/bus\')">Search Buses</button>');
+  const subtotal = trip.fare * seatArr.length;
+  const serviceFee = 150 * seatArr.length;
+  const total = subtotal + serviceFee;
+  const user = Auth.current();
+
+  return `
+  <div class="page-hero">
+    <div class="container">
+      <h1>Complete Your Booking</h1>
+      <p>Review your trip and enter passenger details.</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px">
+    <form data-form="checkout" data-trip="${trip.id}" data-seats="${seatArr.join(',')}">
+      <div class="grid" style="grid-template-columns:1fr 380px;gap:32px">
+        <div>
+          <div class="panel">
+            <div class="panel-head"><h3>Contact Details</h3></div>
+            <div class="panel-body">
+              <div class="grid grid-2" style="gap:16px">
+                <div class="field"><label>Full Name *</label><input name="fullName" required value="${user ? escapeHTML(user.fullName) : ''}"></div>
+                <div class="field"><label>Phone *</label><input name="phone" required value="${user ? escapeHTML(user.phone||'') : ''}" placeholder="03XX-XXXXXXX"></div>
+                <div class="field" style="grid-column:1/-1"><label>Email *</label><input type="email" name="email" required value="${user ? escapeHTML(user.email) : ''}"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head"><h3>Passenger Details (${seatArr.length})</h3></div>
+            <div class="panel-body">
+              ${seatArr.map((s,i) => `<div style="margin-bottom:14px;padding-bottom:14px;${i<seatArr.length-1?'border-bottom:1px solid var(--border)':''}">
+                <strong style="display:block;margin-bottom:8px;color:var(--navy-800)">Seat ${s}</strong>
+                <input name="passenger_${i}" required placeholder="Passenger ${i+1} full name" style="width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius-md)">
+              </div>`).join('')}
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head"><h3>Payment Method</h3></div>
+            <div class="panel-body">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <label style="display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer">
+                  <input type="radio" name="payment" value="MOCK" checked> <strong>Sandbox Payment (Demo)</strong> <span class="badge badge-warning">Test Mode</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer">
+                  <input type="radio" name="payment" value="BANK_TRANSFER"> <strong>Bank Transfer</strong> <small class="muted">(Admin verifies)</small>
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer">
+                  <input type="radio" name="payment" value="CASH"> <strong>Cash at Office</strong> <small class="muted">(Admin confirms)</small>
+                </label>
+              </div>
+              <label style="display:flex;align-items:flex-start;gap:8px;margin-top:16px;font-size:12.5px;color:var(--text-muted)"><input type="checkbox" required> I accept the <a style="color:var(--gold-500);text-decoration:underline" onclick="Router.go('/terms');return false" href="#">Terms & Conditions</a> and cancellation policy.</label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="padding:24px;position:sticky;top:90px">
+            <h3 style="margin-bottom:16px">Trip Summary</h3>
+            <div style="font-size:13.5px;line-height:1.9;color:var(--text-muted);margin-bottom:16px">
+              <strong style="color:var(--navy-900);display:block">${escapeHTML(trip.operator)} · ${escapeHTML(trip.busType)}</strong>
+              ${escapeHTML(route.origin)} → ${escapeHTML(route.destination)}<br>
+              ${fmtDateTime(trip.departure)}<br>
+              Seats: ${seatArr.join(', ')}
+            </div>
+            <div class="divider"></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px"><span class="muted">Subtotal</span><strong>${fmtPKR(subtotal)}</strong></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px"><span class="muted">Service fee</span><strong>${fmtPKR(serviceFee)}</strong></div>
+            <div class="divider"></div>
+            <div style="display:flex;justify-content:space-between;font-size:18px;font-weight:700;color:var(--navy-900)"><span>Total</span><span>${fmtPKR(total)}</span></div>
+            <button type="submit" class="btn btn-gold btn-lg btn-block mt-16">Confirm & Pay</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>`;
+});
+
+/* ============================================================
+   PAGE: CONFIRMATION
+   ============================================================ */
+Router.register('/booking/confirmation', (q) => {
+  const db = Store.get();
+  const b = db.bookings.find(x => x.reference === q.ref);
+  if (!b) return emptyState('🎫','Not found','Booking reference not found.','');
+  const isPaid = b.paymentStatus === 'PAID';
+  return `
+  <div class="container" style="padding:60px 24px">
+    <div style="max-width:640px;margin:0 auto;text-align:center;margin-bottom:32px">
+      <div style="width:72px;height:72px;border-radius:50%;background:${isPaid?'var(--success-bg)':'var(--warning-bg)'};color:${isPaid?'var(--success)':'var(--warning)'};display:grid;place-items:center;font-size:36px;margin:0 auto 20px">${isPaid?'✓':'⏳'}</div>
+      <h1>${isPaid?'Booking Confirmed!':'Booking Submitted'}</h1>
+      <p class="muted">${isPaid?'Your ticket is ready. Show the QR code at boarding.':'Your booking is pending confirmation. You will receive an email once confirmed.'}</p>
+    </div>
+    <div class="ticket">
+      <div class="ticket-head">
+        <div><h3>Daniyal Travel Service</h3><small style="color:rgba(255,255,255,.6)">Your Journey, Our Responsibility</small></div>
+        <div class="ref">${b.reference}</div>
+      </div>
+      <div class="ticket-body">
+        <div style="flex:1;min-width:0">
+          ${b.type === 'BUS' ? `
+            <div class="ticket-row"><span>Type</span><span>Bus Ticket</span></div>
+            <div class="ticket-row"><span>Operator</span><span>${escapeHTML(b.tripSnapshot.operator)}</span></div>
+            <div class="ticket-row"><span>Route</span><span>${escapeHTML(b.tripSnapshot.route.origin)} → ${escapeHTML(b.tripSnapshot.route.destination)}</span></div>
+            <div class="ticket-row"><span>Departure</span><span>${fmtDateTime(b.tripSnapshot.departure)}</span></div>
+            <div class="ticket-row"><span>Seats</span><span>${b.seatNumbers.join(', ')}</span></div>
+          ` : `
+            <div class="ticket-row"><span>Type</span><span>Travel Package</span></div>
+            <div class="ticket-row"><span>Package</span><span>${escapeHTML(b.packageSnapshot.name)}</span></div>
+            <div class="ticket-row"><span>Departure</span><span>${fmtDate(b.packageSnapshot.departureDate)}</span></div>
+            <div class="ticket-row"><span>Travelers</span><span>${b.travelers}</span></div>
+          `}
+          <div class="ticket-row"><span>Passenger</span><span>${escapeHTML(b.contactName)}</span></div>
+          <div class="ticket-row"><span>Total Paid</span><span>${fmtPKR(b.total)}</span></div>
+          <div class="ticket-row"><span>Status</span><span>${statusBadge(b.status)}</span></div>
+          <div class="ticket-row"><span>Payment</span><span>${statusBadge(b.paymentStatus)}</span></div>
+        </div>
+        <div class="qr-wrap">
+          <div id="qrCode" style="width:120px;height:120px;background:#fff;display:grid;place-items:center;font-family:monospace;font-size:10px;color:var(--navy-900);text-align:center;padding:8px;border:1px dashed var(--border)">QR<br>${b.reference}</div>
+          <small>Scan to verify</small>
+        </div>
+      </div>
+    </div>
+    <div class="flex center gap-12 mt-24 no-print" style="justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="window.print()">🖨 Print Ticket</button>
+      <button class="btn btn-outline" onclick="Router.go('/account')">My Bookings</button>
+      <button class="btn btn-ghost" onclick="Router.go('/')">Return Home</button>
+    </div>
+    <p style="text-align:center;color:var(--text-muted);font-size:12px;margin-top:24px">Booking Reference: <strong>${b.reference}</strong> · Keep this safe for boarding and support.</p>
+  </div>`;
+});
+
+/* ============================================================
+   PAGE: AUTH
+   ============================================================ */
+Router.register('/login', (q) => `
+  <div class="container" style="padding:60px 24px;max-width:440px">
+    <h1 style="text-align:center;margin-bottom:8px">Welcome Back</h1>
+    <p class="muted" style="text-align:center;margin-bottom:28px">Sign in to manage your bookings.</p>
+    <form data-form="login" class="card" style="padding:28px">
+      <div class="field mb-16"><label>Email</label><input type="email" name="email" required placeholder="you@example.com"></div>
+      <div class="field mb-16"><label>Password</label><input type="password" name="password" required></div>
+      <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+      <div class="divider"></div>
+      <p style="text-align:center;font-size:13px">Don't have an account? <a style="color:var(--gold-500);font-weight:600;cursor:pointer" onclick="Router.go('/register')">Register</a></p>
+      <p style="text-align:center;font-size:13px;margin-top:8px"><a style="color:var(--text-muted);cursor:pointer" onclick="Router.go('/forgot')">Forgot password?</a></p>
+    </form>
+    <div class="card mt-24" style="padding:16px;background:var(--surface);font-size:12.5px">
+      <strong style="display:block;margin-bottom:6px">Demo Accounts:</strong>
+      <div>Admin: <code>admin@daniyaltravel.pk</code> / <code>Admin@123</code></div>
+      <div>Customer: <code>customer@example.com</code> / <code>Customer@123</code></div>
+    </div>
+  </div>`);
+
+Router.register('/register', () => `
+  <div class="container" style="padding:60px 24px;max-width:440px">
+    <h1 style="text-align:center;margin-bottom:8px">Create Account</h1>
+    <p class="muted" style="text-align:center;margin-bottom:28px">Join us to book faster and manage your trips.</p>
+    <form data-form="register" class="card" style="padding:28px">
+      <div class="field mb-16"><label>Full Name</label><input name="fullName" required></div>
+      <div class="field mb-16"><label>Email</label><input type="email" name="email" required></div>
+      <div class="field mb-16"><label>Phone</label><input name="phone" required placeholder="03XX-XXXXXXX"></div>
+      <div class="field mb-16"><label>Password</label><input type="password" name="password" required minlength="6"><span class="hint">Minimum 6 characters</span></div>
+      <button type="submit" class="btn btn-gold btn-block">Create Account</button>
+      <p style="text-align:center;font-size:13px;margin-top:16px">Already have an account? <a style="color:var(--gold-500);font-weight:600;cursor:pointer" onclick="Router.go('/login')">Sign In</a></p>
+    </form>
+  </div>`);
+
+Router.register('/forgot', () => `
+  <div class="container" style="padding:60px 24px;max-width:440px">
+    <h1 style="text-align:center;margin-bottom:8px">Reset Password</h1>
+    <p class="muted" style="text-align:center;margin-bottom:28px">Enter your email and we'll send a reset link.</p>
+    <form data-form="forgot" class="card" style="padding:28px">
+      <div class="field mb-16"><label>Email</label><input type="email" name="email" required></div>
+      <button type="submit" class="btn btn-primary btn-block">Send Reset Link</button>
+      <p style="text-align:center;font-size:13px;margin-top:16px"><a style="color:var(--text-muted);cursor:pointer" onclick="Router.go('/login')">Back to Sign In</a></p>
+    </form>
+    <p style="text-align:center;font-size:11.5px;color:var(--text-muted);margin-top:16px">Note: In this demo, no email is actually sent.</p>
+  </div>`);
+
+/* ============================================================
+   PAGE: ACCOUNT
+   ============================================================ */
+Router.register('/account', () => {
+  if (!Auth.requireAuth('/account')) return '';
+  const user = Auth.current();
+  const db = Store.get();
+  const myBookings = db.bookings.filter(b => b.userId === user.id);
+  const upcoming = myBookings.filter(b => b.status === 'CONFIRMED' && new Date(b.tripSnapshot?.departure || b.packageSnapshot?.departureDate) > new Date());
+  const completed = myBookings.filter(b => b.status === 'COMPLETED');
+  return `
+  <div class="page-hero">
+    <div class="container">
+      <h1>My Account</h1>
+      <p>Manage your bookings, profile, and account settings.</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px">
+    <div class="dash-layout">
+      <aside class="dash-sidebar">
+        <div class="who">
+          <div class="avatar">${escapeHTML(user.fullName.charAt(0).toUpperCase())}</div>
+          <div><strong>${escapeHTML(user.fullName)}</strong><small>${escapeHTML(user.email)}</small></div>
+        </div>
+        <button class="side-link active" onclick="Router.go('/account')">📊 Overview</button>
+        <button class="side-link" onclick="Router.go('/account/bookings')">🎫 My Bookings</button>
+        <button class="side-link" onclick="Router.go('/account/profile')">👤 Profile</button>
+        <div class="divider"></div>
+        <button class="side-link danger" onclick="Auth.logout()">Sign Out</button>
+      </aside>
+      <div>
+        <div class="kpi-grid">
+          <div class="kpi"><div class="label">Total Bookings</div><div class="value">${myBookings.length}</div></div>
+          <div class="kpi"><div class="label">Upcoming Trips</div><div class="value">${upcoming.length}</div></div>
+          <div class="kpi"><div class="label">Completed</div><div class="value">${completed.length}</div></div>
+          <div class="kpi"><div class="label">Total Spent</div><div class="value" style="font-size:20px">${fmtPKR(myBookings.filter(b=>b.paymentStatus==='PAID').reduce((s,b)=>s+b.total,0))}</div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Recent Bookings</h3><button class="btn btn-outline btn-sm" onclick="Router.go('/account/bookings')">View All</button></div>
+          <div class="panel-body flush">
+            ${myBookings.length === 0 ? emptyState('🎫','No bookings yet','Browse our buses and packages to get started.','<button class="btn btn-primary mt-16" onclick="Router.go(\'/bus\')">Book Now</button>') : `
+            <div class="table-wrap"><table>
+              <thead><tr><th>Reference</th><th>Type</th><th>Date</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                ${myBookings.slice().reverse().slice(0,5).map(b => `<tr>
+                  <td><code style="font-family:monospace;font-weight:600">${b.reference}</code></td>
+                  <td>${b.type === 'BUS' ? '🚌 Bus' : '📦 Package'}</td>
+                  <td>${fmtDate(b.createdAt)}</td>
+                  <td>${fmtPKR(b.total)}</td>
+                  <td>${statusBadge(b.status)}</td>
+                  <td><button class="btn btn-ghost btn-sm" onclick="Router.go('/account/bookings')">View</button></td>
+                </tr>`).join('')}
+              </tbody>
+            </table></div>`}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+});
+
+Router.register('/account/bookings', () => {
+  if (!Auth.requireAuth('/account/bookings')) return '';
+  const user = Auth.current();
+  const db = Store.get();
+  const myBookings = db.bookings.filter(b => b.userId === user.id).sort((a,b) => b.createdAt.localeCompare(a.createdAt));
+  return `
+  <div class="page-hero">
+    <div class="container">
+      <h1>My Bookings</h1>
+      <p>All your trips — past, present, and upcoming.</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px">
+    <button class="btn btn-ghost mb-24" onclick="Router.go('/account')">← Back to Account</button>
+    ${myBookings.length === 0 ? emptyState('🎫','No bookings yet','Book a bus or a package to get started.','<button class="btn btn-primary mt-16" onclick="Router.go(\'/bus\')">Browse Buses</button>') : myBookings.map(b => `
+      <div class="card" style="padding:24px;margin-bottom:16px">
+        <div class="flex between wrap gap-16">
+          <div style="flex:1;min-width:240px">
+            <div class="flex center gap-12 mb-16" style="margin-bottom:8px">
+              <code style="font-family:monospace;font-weight:700;font-size:14px;color:var(--navy-900)">${b.reference}</code>
+              ${statusBadge(b.status)}
+              ${statusBadge(b.paymentStatus)}
+            </div>
+            <strong style="display:block;margin-bottom:4px">${b.type === 'BUS' ? escapeHTML(b.tripSnapshot.operator + ' — ' + b.tripSnapshot.route.origin + ' → ' + b.tripSnapshot.route.destination) : escapeHTML(b.packageSnapshot.name)}</strong>
+            <small class="muted">${b.type === 'BUS' ? fmtDateTime(b.tripSnapshot.departure) + ' · Seats ' + b.seatNumbers.join(', ') : fmtDate(b.packageSnapshot.departureDate) + ' · ' + b.travelers + ' traveler(s)'}</small>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:20px;font-weight:700;color:var(--navy-900);margin-bottom:8px">${fmtPKR(b.total)}</div>
+            <button class="btn btn-ghost btn-sm" onclick="Router.go('/booking/confirmation?ref=${b.reference}')">View Ticket</button>
+            ${['PENDING_PAYMENT','PENDING_CONFIRMATION','CONFIRMED'].includes(b.status) ? `<button class="btn btn-outline btn-sm" data-action="open-cancel-booking" data-id="${b.id}">Cancel</button>` : ''}
+          </div>
+        </div>
+      </div>`).join('')}
+  </div>`;
+});
+
+Router.register('/account/profile', () => {
+  if (!Auth.requireAuth('/account/profile')) return '';
+  const user = Auth.current();
+  return `
+  <div class="page-hero">
+    <div class="container">
+      <h1>Profile Settings</h1>
+      <p>Update your personal information.</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px;max-width:640px">
+    <button class="btn btn-ghost mb-24" onclick="Router.go('/account')">← Back to Account</button>
+    <form data-form="profile" class="card" style="padding:28px">
+      <div class="field mb-16"><label>Full Name</label><input name="fullName" required value="${escapeHTML(user.fullName)}"></div>
+      <div class="field mb-16"><label>Email</label><input type="email" value="${escapeHTML(user.email)}" disabled><span class="hint">Email cannot be changed.</span></div>
+      <div class="field mb-16"><label>Phone</label><input name="phone" required value="${escapeHTML(user.phone||'')}"></div>
+      <div class="field mb-16"><label>New Password (optional)</label><input type="password" name="password" minlength="6" placeholder="Leave blank to keep current"><span class="hint">Minimum 6 characters</span></div>
+      <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+    </form>
+  </div>`;
+});
+
+/* ============================================================
+   PAGE: ABOUT, CONTACT, FAQS, TERMS, PRIVACY
+   ============================================================ */
+Router.register('/about', () => `
+  <div class="page-hero">
+    <div class="container">
+      <h1>About Daniyal Travel Service</h1>
+      <p>Pakistan's trusted travel partner since 2018.</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px;max-width:800px">
+    <div class="card" style="padding:32px;margin-bottom:24px">
+      <h2 style="margin-bottom:16px">Our Story</h2>
+      <p style="color:var(--text-muted);line-height:1.9;margin-bottom:16px">Daniyal Travel Service was founded with a simple mission: to make travel across Pakistan safe, comfortable, and accessible. From premium intercity bus tickets to curated northern tours, we connect travellers with the places they love — with transparency and care.</p>
+      <p style="color:var(--text-muted);line-height:1.9">Every journey we operate is backed by vetted partners, secure booking systems, and a support team that genuinely cares. Whether you're commuting between cities or exploring Hunza's peaks, we're with you.</p>
+    </div>
+    <div class="grid grid-3" style="margin-top:24px">
+      <div class="card" style="padding:24px;text-align:center"><div style="font-size:32px;font-weight:700;color:var(--gold-500);font-family:var(--font-display)">50K+</div><div class="muted">Happy Travellers</div></div>
+      <div class="card" style="padding:24px;text-align:center"><div style="font-size:32px;font-weight:700;color:var(--gold-500);font-family:var(--font-display)">100+</div><div class="muted">Routes Served</div></div>
+      <div class="card" style="padding:24px;text-align:center"><div style="font-size:32px;font-weight:700;color:var(--gold-500);font-family:var(--font-display)">4.8★</div><div class="muted">Sample Rating</div></div>
+    </div>
+  </div>`);
+
+Router.register('/contact', () => {
+  const db = Store.get();
+  return `
+  <div class="page-hero">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>We're here to help with any questions about your trip.</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px">
+    <div class="grid grid-2" style="gap:32px">
+      <div>
+        <div class="card" style="padding:24px;margin-bottom:16px">
+          <h3 style="margin-bottom:14px">Get in Touch</h3>
+          <p style="color:var(--text-muted);margin-bottom:16px"><strong>📞 Phone:</strong> ${escapeHTML(db.content.contactPhone)}</p>
+          <p style="color:var(--text-muted);margin-bottom:16px"><strong>✉ Email:</strong> ${escapeHTML(db.content.contactEmail)}</p>
+          <p style="color:var(--text-muted)"><strong>📍 Address:</strong> Suite 401, Business Avenue, Shahrah-e-Faisal, Karachi, Pakistan</p>
+        </div>
+        <div class="card" style="padding:24px">
+          <h3 style="margin-bottom:14px">Business Hours</h3>
+          <p style="color:var(--text-muted);font-size:14px;line-height:1.9">Monday – Saturday: 9:00 AM – 8:00 PM PKT<br>Sunday: 10:00 AM – 4:00 PM PKT<br>Emergency Support: 24/7</p>
+        </div>
+      </div>
+      <form data-form="contact" class="card" style="padding:28px">
+        <h3 style="margin-bottom:16px">Send a Message</h3>
+        <div class="field mb-16"><label>Your Name</label><input name="name" required></div>
+        <div class="field mb-16"><label>Email</label><input type="email" name="email" required></div>
+        <div class="field mb-16"><label>Subject</label><input name="subject" required></div>
+        <div class="field mb-16"><label>Message</label><textarea name="message" rows="5" required></textarea></div>
+        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+      </form>
+    </div>
+  </div>`;
+});
+
+Router.register('/faqs', () => `
+  <div class="page-hero"><div class="container"><h1>FAQs</h1><p>Common questions about bookings, cancellations, and travel.</p></div></div>
+  <div class="container" style="padding-bottom:60px;max-width:800px">
+    ${[
+      {q:'How do I book a bus ticket?', a:'Search for your route, choose a trip, select seats, enter passenger details, and complete payment. You will receive a booking reference and a printable ticket.'},
+      {q:'Can I cancel my booking?', a:'Yes. Cancellations are allowed up to 24 hours before departure for bus tickets, and up to 7 days before departure for packages. Refunds are processed per our cancellation policy.'},
+      {q:'Are payments secure?', a:'In the production system, payments are processed via verified payment providers. In this demo, no real payment is processed.'},
+      {q:'Do packages include meals?', a:'Most packages include breakfast and dinner. Check each package\'s Inclusions section for exact details.'},
+      {q:'How do I receive my ticket?', a:'After confirmation you can view and print your ticket from My Bookings. It includes a QR code for verification.'},
+      {q:'What if I miss my bus?', a:'Contact our support immediately. Depending on the operator\'s policy, we may arrange an alternative at a discounted rate.'}
+    ].map(f => `<div class="faq-item"><button class="faq-q" data-action="faq-toggle"><span>${escapeHTML(f.q)}</span><span class="chev">▾</span></button><div class="faq-a">${escapeHTML(f.a)}</div></div>`).join('')}
+  </div>`);
+
+Router.register('/terms', () => `
+  <div class="page-hero"><div class="container"><h1>Terms & Conditions</h1></div></div>
+  <div class="container" style="padding-bottom:60px;max-width:800px">
+    <div class="card" style="padding:32px;font-size:14.5px;line-height:1.9;color:var(--text-muted)">
+      <h3 style="margin-bottom:12px;color:var(--navy-900)">1. Booking</h3>
+      <p>By making a booking you confirm the accuracy of all details provided. Booking references must be presented at boarding.</p>
+      <h3 style="margin:20px 0 12px;color:var(--navy-900)">2. Cancellation & Refunds</h3>
+      <p>Bus tickets: cancellable up to 24 hours before departure. Packages: cancellable up to 7 days before departure. Refunds are processed within 7–14 business days.</p>
+      <h3 style="margin:20px 0 12px;color:var(--navy-900)">3. Payment</h3>
+      <p>Prices are in PKR. Payment methods shown include sandbox (test), bank transfer, and cash — only verified payments confirm a booking.</p>
+      <h3 style="margin:20px 0 12px;color:var(--navy-900)">4. Liability</h3>
+      <p>Daniyal Travel Service acts as a booking platform. Operators are responsible for the transport service itself.</p>
+      <h3 style="margin:20px 0 12px;color:var(--navy-900)">5. Demo Notice</h3>
+      <p>This is a demonstration prototype. No real bookings or payments are processed. Sample data is used throughout.</p>
+    </div>
+  </div>`);
+
+Router.register('/privacy', () => `
+  <div class="page-hero"><div class="container"><h1>Privacy Policy</h1></div></div>
+  <div class="container" style="padding-bottom:60px;max-width:800px">
+    <div class="card" style="padding:32px;font-size:14.5px;line-height:1.9;color:var(--text-muted)">
+      <h3 style="margin-bottom:12px;color:var(--navy-900)">Data We Collect</h3>
+      <p>Name, email, phone, and booking details — used solely to process and confirm your travel.</p>
+      <h3 style="margin:20px 0 12px;color:var(--navy-900)">Storage</h3>
+      <p>In this demo, data is stored locally in your browser (localStorage). In production, data would be stored in a secure database with encryption at rest.</p>
+      <h3 style="margin:20px 0 12px;color:var(--navy-900)">Your Rights</h3>
+      <p>You may request deletion of your data at any time by contacting support.</p>
+      <h3 style="margin:20px 0 12px;color:var(--navy-900)">Demo Notice</h3>
+      <p>No third-party trackers or analytics are used in this prototype.</p>
+    </div>
+  </div>`);
+
+/* ============================================================
+   ADMIN DASHBOARD
+   ============================================================ */
+Router.register('/admin', () => {
+  if (!Auth.requireAdmin()) return '';
+  const db = Store.get();
+  const totalBookings = db.bookings.length;
+  const pending = db.bookings.filter(b => b.status === 'PENDING_PAYMENT' || b.status === 'PENDING_CONFIRMATION').length;
+  const confirmed = db.bookings.filter(b => b.status === 'CONFIRMED').length;
+  const cancelled = db.bookings.filter(b => b.status === 'CANCELLED').length;
+  const revenue = db.bookings.filter(b => b.paymentStatus === 'PAID').reduce((s,b) => s + b.total, 0);
+  return `
+  <div class="page-hero">
+    <div class="container">
+      <h1>Admin Dashboard</h1>
+      <p>Overview of bookings, revenue, and activity.</p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:60px">
+    <div class="dash-layout">
+      <aside class="dash-sidebar">
+        <div class="who"><div class="avatar">A</div><div><strong>Administrator</strong><small>${escapeHTML(Auth.current().email)}</small></div></div>
+        <button class="side-link active">📊 Dashboard</button>
+        <button class="side-link" onclick="Router.go('/admin/bookings')">🎫 Bookings</button>
+        <button class="side-link" onclick="Router.go('/admin/destinations')">🌍 Destinations</button>
+        <button class="side-link" onclick="Router.go('/admin/packages')">📦 Packages</button>
+        <button class="side-link" onclick="Router.go('/admin/customers')">👥 Customers</button>
+        <button class="side-link" onclick="Router.go('/admin/payments')">💳 Payments</button>
+        <div class="divider"></div>
+        <button class="side-link" onclick="Router.go('/')">← Public Site</button>
+      </aside>
+      <div>
+        <div class="kpi-grid">
+          <div class="kpi"><div class="label">Total Bookings</div><div class="value">${totalBookings}</div></div>
+          <div class="kpi"><div class="label">Pending</div><div class="value">${pending}</div></div>
+          <div class="kpi"><div class="label">Confirmed</div><div class="value">${confirmed}</div></div>
+          <div class="kpi"><div class="label">Revenue (Verified)</div><div class="value" style="font-size:20px">${fmtPKR(revenue)}</div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Recent Activity</h3></div>
+          <div class="panel-body flush">
+            ${db.bookings.length === 0 ? emptyState('📋','No bookings yet','Bookings will appear here as customers book.','') : `
+            <div class="table-wrap"><table>
+              <thead><tr><th>Reference</th><th>Customer</th><th>Type</th><th>Amount</th><th>Status</th><th>Payment</th><th></th></tr></thead>
+              <tbody>
+                ${db.bookings.slice().reverse().slice(0,8).map(b => `<tr>
+                  <td><code style="font-family:monospace">${b.reference}</code></td>
+                  <td>${escapeHTML(b.contactName)}</td>
+                  <td>${b.type}</td>
+                  <td>${fmtPKR(b.total)}</td>
+                  <td>${statusBadge(b.status)}</td>
+                  <td>${statusBadge(b.paymentStatus)}</td>
+                  <td><button class="btn btn-ghost btn-sm" onclick="Router.go('/admin/bookings')">Manage</button></td>
+                </tr>`).join('')}
+              </tbody>
+            </table></div>`}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+});
+
+Router.register('/admin/bookings', () => {
+  if (!Auth.requireAdmin()) return '';
+  const db = Store.get();
+  return `
+  <div class="page-hero"><div class="container"><h1>Manage Bookings</h1><p>Search, confirm, cancel, and audit all bookings.</p></div></div>
+  <div class="container" style="padding-bottom:60px">
+    <button class="btn btn-ghost mb-24" onclick="Router.go('/admin')">← Back to Dashboard</button>
+    ${db.bookings.length === 0 ? emptyState('📋','No bookings yet','','') : `
+    <div class="panel">
+      <div class="panel-head"><h3>All Bookings (${db.bookings.length})</h3></div>
+      <div class="panel-body flush">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Reference</th><th>Customer</th><th>Type</th><th>Details</th><th>Amount</th><th>Status</th><th>Payment</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${db.bookings.slice().reverse().map(b => `<tr>
+              <td><code style="font-family:monospace;font-weight:600">${b.reference}</code></td>
+              <td>${escapeHTML(b.contactName)}<br><small class="muted">${escapeHTML(b.contactPhone)}</small></td>
+              <td>${b.type}</td>
+              <td style="font-size:12.5px;color:var(--text-muted)">${b.type === 'BUS' ? escapeHTML(b.tripSnapshot.operator) + '<br>' + b.seatNumbers.join(', ') : escapeHTML(b.packageSnapshot.name)}</td>
+              <td>${fmtPKR(b.total)}</td>
+              <td>${statusBadge(b.status)}</td>
+              <td>${statusBadge(b.paymentStatus)}</td>
+              <td>
+                ${b.status === 'PENDING_CONFIRMATION' ? `<button class="btn btn-gold btn-sm" data-action="open-confirm-booking" data-id="${b.id}">Confirm</button>` : ''}
+                ${!['CANCELLED','REFUNDED','COMPLETED'].includes(b.status) ? `<button class="btn btn-outline btn-sm" data-action="open-cancel-booking" data-id="${b.id}">Cancel</button>` : ''}
+                <button class="btn btn-ghost btn-sm" onclick="Router.go('/booking/confirmation?ref=${b.reference}')">View</button>
+              </td>
+            </tr>`).join('')}
+          </tbody>
+        </table></div>
+      </div>
+    </div>`}
+  </div>`;
+});
+
+Router.register('/admin/destinations', () => {
+  if (!Auth.requireAdmin()) return '';
+  const db = Store.get();
+  return `
+  <div class="page-hero"><div class="container"><h1>Destinations</h1><p>Manage destination listings.</p></div></div>
+  <div class="container" style="padding-bottom:60px">
+    <button class="btn btn-ghost mb-24" onclick="Router.go('/admin')">← Back to Dashboard</button>
+    <div class="grid grid-3">
+      ${db.destinations.map(d => `<div class="card">
+        <div style="height:140px;background-image:url('${d.image}');background-size:cover;background-position:center"></div>
+        <div style="padding:16px">
+          <strong>${escapeHTML(d.name)}</strong>
+          <p style="color:var(--text-muted);font-size:12.5px;margin:4px 0 12px">${escapeHTML(d.tagline)}</p>
+          ${d.featured ? '<span class="badge badge-gold">Featured</span>' : '<span class="badge badge-muted">Standard</span>'}
+        </div>
+      </div>`).join('')}
+    </div>
+    <p style="color:var(--text-muted);font-size:13px;margin-top:24px;text-align:center">Note: Full CRUD editing available in the production build. This demo shows listings only.</p>
+  </div>`;
+});
+
+Router.register('/admin/packages', () => {
+  if (!Auth.requireAdmin()) return '';
+  const db = Store.get();
+  return `
+  <div class="page-hero"><div class="container"><h1>Packages</h1><p>Manage travel packages and departures.</p></div></div>
+  <div class="container" style="padding-bottom:60px">
+    <button class="btn btn-ghost mb-24" onclick="Router.go('/admin')">← Back to Dashboard</button>
+    <div class="panel">
+      <div class="panel-body flush">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Name</th><th>Category</th><th>Price</th><th>Capacity</th><th>Departure</th></tr></thead>
+          <tbody>
+            ${db.packages.map(p => `<tr>
+              <td><strong>${escapeHTML(p.name)}</strong></td>
+              <td>${escapeHTML(p.category)}</td>
+              <td>${fmtPKR(p.pricePerPerson)}</td>
+              <td>${p.seatsTaken}/${p.capacity}</td>
+              <td>${fmtDate(p.departureDate)}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </div>`;
+});
+
+Router.register('/admin/customers', () => {
+  if (!Auth.requireAdmin()) return '';
+  const db = Store.get();
+  const customers = db.users.filter(u => u.role === 'CUSTOMER');
+  return `
+  <div class="page-hero"><div class="container"><h1>Customers</h1><p>Registered customer accounts.</p></div></div>
+  <div class="container" style="padding-bottom:60px">
+    <button class="btn btn-ghost mb-24" onclick="Router.go('/admin')">← Back to Dashboard</button>
+    <div class="panel">
+      <div class="panel-body flush">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Bookings</th><th>Joined</th></tr></thead>
+          <tbody>
+            ${customers.map(c => `<tr>
+              <td><strong>${escapeHTML(c.fullName)}</strong></td>
+              <td>${escapeHTML(c.email)}</td>
+              <td>${escapeHTML(c.phone||'—')}</td>
+              <td>${db.bookings.filter(b => b.userId === c.id).length}</td>
+              <td>${fmtDate(c.createdAt)}</td>
+            </tr>`).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--text-muted)">No customers yet.</td></tr>'}
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </div>`;
+});
+
+Router.register('/admin/payments', () => {
+  if (!Auth.requireAdmin()) return '';
+  const db = Store.get();
+  const payments = db.payments.slice().reverse();
+  return `
+  <div class="page-hero"><div class="container"><h1>Payments</h1><p>Transaction records and refunds.</p></div></div>
+  <div class="container" style="padding-bottom:60px">
+    <button class="btn btn-ghost mb-24" onclick="Router.go('/admin')">← Back to Dashboard</button>
+    ${payments.length === 0 ? emptyState('💳','No payments yet','','') : `
+    <div class="panel">
+      <div class="panel-body flush">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Txn ID</th><th>Booking</th><th>Provider</th><th>Amount</th><th>Status</th><th>Date</th><th></th></tr></thead>
+          <tbody>
+            ${payments.map(p => {
+              const b = db.bookings.find(x => x.id === p.bookingId);
+              return `<tr>
+                <td><code style="font-family:monospace;font-size:12px">${escapeHTML(p.providerTxnId || '—')}</code></td>
+                <td>${b ? escapeHTML(b.reference) : '—'}</td>
+                <td>${p.provider}</td>
+                <td>${fmtPKR(p.amount)}</td>
+                <td>${statusBadge(p.status)}</td>
+                <td>${fmtDate(p.createdAt)}</td>
+                <td>${p.status === 'SUCCESS' ? `<button class="btn btn-outline btn-sm" data-action="open-refund" data-id="${p.id}">Refund</button>` : ''}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table></div>
+      </div>
+    </div>`}
+  </div>`;
+});
+
+/* 404 */
+Router.register('404', () => `
+  <div class="container" style="padding:120px 24px;text-align:center">
+    <div style="font-size:80px;color:var(--gold-500);font-family:var(--font-display);font-weight:700">404</div>
+    <h1 style="margin:16px 0">Page Not Found</h1>
+    <p class="muted" style="margin-bottom:24px">The page you're looking for doesn't exist.</p>
+    <button class="btn btn-primary" onclick="Router.go('/')">Go Home</button>
+  </div>`);
+
+/* ============================================================
+   FORM HANDLERS
+   ============================================================ */
+function handleForm(type, form) {
+  const fd = new FormData(form);
+  switch (type) {
+    case 'hero-search': {
+      const from = fd.get('from'), to = fd.get('to'), date = fd.get('date'), pax = fd.get('passengers');
+      if (from === to) throw new Error('Departure and destination must be different.');
+      Router.go(`/bus/search?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${date}&passengers=${pax}`);
+      break;
+    }
+    case 'bus-search': {
+      const from = fd.get('from'), to = fd.get('to'), date = fd.get('date'), pax = fd.get('passengers');
+      if (from === to) throw new Error('Departure and destination must be different.');
+      Router.go(`/bus/search?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${date}&passengers=${pax}`);
+      break;
+    }
+    case 'checkout': {
+      const tripId = Number(form.dataset.trip);
+      const seats = form.dataset.seats.split(',');
+      const user = Auth.current();
+      if (!user) {
+        Toast.warn('Sign in required', 'Please sign in to complete your booking.');
+        Router.go('/login?next=' + encodeURIComponent(location.hash));
+        return;
+      }
+      const contact = { fullName: fd.get('fullName'), phone: fd.get('phone'), email: fd.get('email') };
+      const passengers = seats.map((s,i) => ({ seat: s, name: fd.get('passenger_' + i) }));
+      const booking = Bookings.createBus({ tripId, seatNumbers: seats, passengers, contact, userId: user.id });
+      const method = fd.get('payment');
+      Bookings.pay(booking.id, method);
+      selectedSeats = [];
+      Toast.success('Booking created', 'Reference: ' + booking.reference);
+      Router.go('/booking/confirmation?ref=' + booking.reference);
+      break;
+    }
+    case 'reserve-package': {
+      const packageId = Number(form.dataset.id);
+      const travelers = Number(fd.get('travelers'));
+      const user = Auth.current();
+      if (!user) {
+        Toast.warn('Sign in required', 'Please sign in to reserve a package.');
+        Router.go('/login?next=' + encodeURIComponent(location.hash));
+        return;
+      }
+      const contact = { fullName: user.fullName, phone: user.phone || '', email: user.email };
+      const booking = Bookings.createPackage({ packageId, travelers, contact, userId: user.id });
+      Toast.success('Reservation created', 'Reference: ' + booking.reference);
+      Router.go('/booking/confirmation?ref=' + booking.reference);
+      break;
+    }
+    case 'login': {
+      const u = Auth.login(fd.get('email'), fd.get('password'));
+      Toast.success('Welcome back', u.fullName);
+      const next = new URLSearchParams(location.hash.split('?')[1]).get('next') || '/';
+      Router.go(next.startsWith('#') ? next.slice(1) : next);
+      break;
+    }
+    case 'register': {
+      const u = Auth.register(fd.get('fullName'), fd.get('email'), fd.get('phone'), fd.get('password'));
+      Toast.success('Account created', 'Welcome, ' + u.fullName);
+      Router.go('/account');
+      break;
+    }
+    case 'forgot': {
+      Toast.success('Reset link sent', 'If the email exists, you\'ll receive instructions.');
+      Router.go('/login');
+      break;
+    }
+    case 'profile': {
+      const user = Auth.current();
+      const db = Store.get();
+      const u = db.users.find(x => x.id === user.id);
+      u.fullName = fd.get('fullName');
+      u.phone = fd.get('phone');
+      const pwd = fd.get('password');
+      if (pwd) { if (pwd.length < 6) throw new Error('Password must be at least 6 characters.'); u.password = pwd; }
+      Store.set(db);
+      Toast.success('Profile updated', 'Your changes have been saved.');
+      Router.go('/account');
+      break;
+    }
+    case 'contact': {
+      const db = Store.get();
+      db.inquiries.push({ id: uid(), name: fd.get('name'), email: fd.get('email'), subject: fd.get('subject'), message: fd.get('message'), createdAt: nowISO() });
+      Store.set(db);
+      Toast.success('Message sent', 'We\'ll get back to you within 24 hours.');
+      form.reset();
+      break;
+    }
+    default:
+      throw new Error('Unknown form: ' + type);
+  }
+}
+
+/* ============================================================
+   ADMIN ACTIONS (modals)
+   ============================================================ */
+function promptCancel(bookingId) {
+  Modal.open('Cancel Booking', `<p>Are you sure you want to cancel this booking? This action cannot be undone.</p>`, `
+    <button class="btn btn-ghost" onclick="Modal.close()">Back</button>
+    <button class="btn btn-danger" onclick="confirmCancel(${bookingId})">Cancel Booking</button>`);
+}
+function confirmCancel(bookingId) {
+  const user = Auth.current();
+  Bookings.cancel(bookingId, user.id, user.role === 'ADMIN');
+  Modal.close();
+  Toast.success('Booking cancelled', 'Your booking has been cancelled.');
+  Router.render();
+}
+function promptConfirm(bookingId) {
+  Modal.open('Confirm Booking', `<p>Confirm this booking? Payment will be marked as verified and the booking will move to CONFIRMED.</p>`, `
+    <button class="btn btn-ghost" onclick="Modal.close()">Back</button>
+    <button class="btn btn-gold" onclick="confirmConfirm(${bookingId})">Confirm</button>`);
+}
+function confirmConfirm(bookingId) {
+  const db = Store.get();
+  const b = db.bookings.find(x => x.id === bookingId);
+  if (b) { b.status = 'CONFIRMED'; b.paymentStatus = 'PAID'; Store.set(db); }
+  Modal.close();
+  Toast.success('Confirmed', 'Booking status updated.');
+  Router.render();
+}
+function promptRefund(paymentId) {
+  Modal.open('Issue Refund', `<p>Mark this payment as refunded? This updates the payment status and reflects in revenue reports.</p>`, `
+    <button class="btn btn-ghost" onclick="Modal.close()">Back</button>
+    <button class="btn btn-danger" onclick="confirmRefund(${paymentId})">Issue Refund</button>`);
+}
+function confirmRefund(paymentId) {
+  const db = Store.get();
+  const p = db.payments.find(x => x.id === paymentId);
+  if (p) { p.status = 'REFUNDED'; const b = db.bookings.find(x => x.id === p.bookingId); if (b) { b.paymentStatus = 'REFUNDED'; b.status = 'REFUNDED'; } Store.set(db); }
+  Modal.close();
+  Toast.success('Refund recorded', 'Payment marked as refunded.');
+  Router.render();
+}
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+Store.init();
+// Ensure admin seed exists
+(function ensureAdmin() {
+  const db = Store.get();
+  if (!db.users.find(u => u.role === 'ADMIN')) {
+    db.users.push({ id: uid(), email: 'admin@daniyaltravel.pk', password: 'Admin@123', fullName: 'Admin', phone: '0300-0000000', role: 'ADMIN', createdAt: nowISO() });
+    Store.set(db);
+  }
+})();
+
+renderAuthArea();
+Router.render();
+</script>
+</body>
+</html>
